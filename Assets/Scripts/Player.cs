@@ -23,18 +23,23 @@ public class Player : MonoBehaviour
 
         //if player position on the y is greater than 0
         //y position = 0
+        //else if position on the y is less than -3.9f
+        //y position = -3.9f
 
         if (transform.position.y >= 0)
         {
             transform.position = new Vector3(transform.position.x, 0, 0);
         }
+        else if (transform.position.y <= -3.9f)
+        {
+            transform.position = new Vector3(transform.position.x, -3.9f, 0);
+        }
 
 
-
-        //if player on the x > 13
-        //x pos = -13
-        //else if the player on the x axis is less than -13
-        //x pos = 13
+        //if player on the x > 12.7f
+        //x pos = -12.7f
+        //else if the player on the x axis is less than -12.7f
+        //x pos = 12.7f
 
 
     }
