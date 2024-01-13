@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
        //if I hit the space key
        //spawn gameObject
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("Space Key Pressed");
         }
