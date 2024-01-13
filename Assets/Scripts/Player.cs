@@ -17,6 +17,14 @@ public class Player : MonoBehaviour
     void Update()
     {
         CalculateMovement();
+
+       //if I hit the space key
+       //spawn gameObject
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("Space Key Pressed");
+        }
     }
 
     void CalculateMovement()
