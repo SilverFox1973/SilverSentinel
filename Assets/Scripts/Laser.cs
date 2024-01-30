@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Laser : MonoBehaviour
-{   //speed variable of 8
+{   
     [SerializeField]
     private float _laserSpeed = 8.0f;
     
