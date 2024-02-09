@@ -9,7 +9,7 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(SpawnRoutine());
     }
 
     // Update is called once per frame
@@ -26,7 +26,7 @@ public class SpawnManager : MonoBehaviour
     {
         while (true) 
         {
-            Vector3 posToSpawn = new Vector3(Random.Range(-9f, 9f), 7, 0):
+            Vector3 posToSpawn = new Vector3(Random.Range(-9f, 9f), 7, 0);
             Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
             yield return new WaitForSeconds(5.0f);
         }
