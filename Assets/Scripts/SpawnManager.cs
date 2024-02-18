@@ -17,11 +17,6 @@ public class SpawnManager : MonoBehaviour
         StartCoroutine(SpawnRoutine());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     IEnumerator SpawnRoutine()
     {
