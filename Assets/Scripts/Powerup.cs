@@ -16,8 +16,6 @@ public class Powerup : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    //move down at a speed of 3 (adjust in the inspector)
-    //when we leave the screen, destroy this object
     {
         transform.Translate(Vector3.down * _powerupSpeed * Time.deltaTime);
 
@@ -28,14 +26,10 @@ public class Powerup : MonoBehaviour
 
     }
 
-    //OnTriggerCollision
-    //Only be collectible by the Player 
-    //On collection, destroy
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
         {
-            //communicate with the Player script
             Player player = other.transform.GetComponent<Player>();
             if (player != null)
             {

@@ -171,6 +171,8 @@ MonoBehaviour:
   _enemyPrefab: {fileID: 8020425337564363394, guid: 2a13732f0de85664180ea2e5fa64f936,
     type: 3}
   _enemyContainer: {fileID: 648898121}
+  _tripleShotPowerupPrefab: {fileID: 2596807662610508227, guid: 9193ad77a441739409d223a129480fed,
+    type: 3}
 --- !u!1 &270664345
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,83 +418,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.3710809, y: 4.259621}
   m_EdgeRadius: 0
---- !u!1001 &560699419
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 194077683175247007, guid: 9193ad77a441739409d223a129480fed,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 194077683175247007, guid: 9193ad77a441739409d223a129480fed,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 194077683175247007, guid: 9193ad77a441739409d223a129480fed,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 194077683175247007, guid: 9193ad77a441739409d223a129480fed,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 194077683175247007, guid: 9193ad77a441739409d223a129480fed,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 194077683175247007, guid: 9193ad77a441739409d223a129480fed,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 194077683175247007, guid: 9193ad77a441739409d223a129480fed,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 194077683175247007, guid: 9193ad77a441739409d223a129480fed,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 194077683175247007, guid: 9193ad77a441739409d223a129480fed,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 194077683175247007, guid: 9193ad77a441739409d223a129480fed,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2596807662610508227, guid: 9193ad77a441739409d223a129480fed,
-        type: 3}
-      propertyPath: m_Name
-      value: Triple_Shot_Powerup
-      objectReference: {fileID: 0}
-    - target: {fileID: 4998473579353540213, guid: 9193ad77a441739409d223a129480fed,
-        type: 3}
-      propertyPath: _powerupSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2596807662610508227, guid: 9193ad77a441739409d223a129480fed,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1838630015}
-  m_SourcePrefab: {fileID: 100100000, guid: 9193ad77a441739409d223a129480fed, type: 3}
 --- !u!1 &648898121
 GameObject:
   m_ObjectHideFlags: 0
@@ -608,33 +533,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1838630009 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2596807662610508227, guid: 9193ad77a441739409d223a129480fed,
-    type: 3}
-  m_PrefabInstance: {fileID: 560699419}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1838630015
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1838630009}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: aaf99eb197bd1024e895f41cd61cac08, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2091547275
 GameObject:
   m_ObjectHideFlags: 0
@@ -736,4 +634,3 @@ SceneRoots:
   - {fileID: 63660224}
   - {fileID: 1392123706}
   - {fileID: 460172584}
-  - {fileID: 560699419}
