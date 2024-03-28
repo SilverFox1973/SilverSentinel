@@ -173,8 +173,8 @@ MonoBehaviour:
   _enemyContainer: {fileID: 648898121}
   powerups:
   - {fileID: 2596807662610508227, guid: 9193ad77a441739409d223a129480fed, type: 3}
-  - {fileID: 3188511412043728925, guid: 533b3889e9af6754a8d516354d6f1572, type: 3}
-  - {fileID: 0}
+  - {fileID: 5325060206789337556, guid: 78a36a87a6278bd4bbb8df31793e8fa0, type: 3}
+  - {fileID: 7759662360476661664, guid: 89542209cc540ec44a5200fc2682fb92, type: 3}
 --- !u!1 &270664345
 GameObject:
   m_ObjectHideFlags: 0

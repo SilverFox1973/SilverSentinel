@@ -55,8 +55,18 @@ public class Player : MonoBehaviour
 
         Vector3 direction = new Vector3(horizontalInput, verticalInput, 0);
        
-        transform.Translate(direction * _speed * Time.deltaTime);
 
+        if (_isSpeedBoostActive == false)
+        {
+            transform.Translate(direction * _speed * Time.deltaTime);
+        }
+
+        else
+        {
+            transform.Translate(direction * (_speed * _speedMultiplier) * Time.deltaTime);
+        }
+        
+        
         if (transform.position.y >= 0)
         {
             transform.position = new Vector3(transform.position.x, 0, 0);
@@ -93,6 +103,11 @@ public class Player : MonoBehaviour
 
     public void Damage()
     {
+        //if shield is active
+        //do nothing
+        //deactivate shields
+        //return;
+
         _lives -= 1;
 
         if (_lives < 1)
@@ -117,7 +132,6 @@ public class Player : MonoBehaviour
     public void SpeedBoostActive()
     {
         _isSpeedBoostActive = true;
-        _speed *= _speedMultiplier;
         StartCoroutine(SpeedBoostPowerDownRoutine());
     }
 
@@ -125,6 +139,5 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(5.0f);
         _isSpeedBoostActive = false;
-        _speed /= _speedMultiplier;
     }
 }
