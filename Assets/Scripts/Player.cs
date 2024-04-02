@@ -25,6 +25,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject _shieldVisualizer;
 
+    [SerializeField]
+    private int _score;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -152,4 +155,8 @@ public class Player : MonoBehaviour
         _isShieldsActive = true;
         _shieldVisualizer.SetActive(true);
     }
+
+    //create method to add 10 to score!
+    //Communicate with the UI to update the score!
+
 }
