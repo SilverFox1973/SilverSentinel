@@ -8,7 +8,7 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     [SerializeField]
-    private Text _scoreText;
+    private TMP_Text _scoreText;
 
     // Start is called before the first frame update
     void Start()
