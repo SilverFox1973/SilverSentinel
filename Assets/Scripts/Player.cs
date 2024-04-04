@@ -158,9 +158,9 @@ public class Player : MonoBehaviour
 
     //create method to add 10 to score!
     //Communicate with the UI to update the score!
-    public void AddScore()
+    public void AddScore(int points)
     {
-        _score += 10;
+        _score += points;
     }
 
 }
