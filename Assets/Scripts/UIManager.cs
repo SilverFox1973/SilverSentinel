@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {    
         _scoreText.text = "Score: " + 00;
+        _gameOverText.gameObject.SetActive(false);
     }
 
     public void UpdateScore(int playerScore)
@@ -32,8 +33,11 @@ public class UIManager : MonoBehaviour
 
     public void UpdateLives(int currentLives)
     {
-        //display image sprite
-        //give it a new one based on the currentLives index
         _LivesImg.sprite = _liveSprites[currentLives];
+
+        if (currentLives == 0)
+        {
+            _gameOverText.gameObject.SetActive(true);
+        }
     }
 }
