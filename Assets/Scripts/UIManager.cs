@@ -14,6 +14,11 @@ public class UIManager : MonoBehaviour
     private Sprite[] _liveSprites;
     [SerializeField]
     private Image _LivesImg;
+    [SerializeField]
+    private TMP_Text _gameOverText;
+
+
+
     // Start is called before the first frame update
     void Start()
     {    
