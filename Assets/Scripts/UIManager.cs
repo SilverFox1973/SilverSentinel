@@ -38,6 +38,18 @@ public class UIManager : MonoBehaviour
         if (currentLives == 0)
         {
             _gameOverText.gameObject.SetActive(true);
+            StartCoroutine(GameOverFlashRoutine());
+        }
+    }
+
+    IEnumerator GameOverFlashRoutine()
+    {
+        while (true)
+        {
+            _gameOverText.text = "GAME OVER";
+            yield return new WaitForSeconds(0.5f);
+            _gameOverText.text = "";
+            yield return new WaitForSeconds(0.5f);
         }
     }
 }
