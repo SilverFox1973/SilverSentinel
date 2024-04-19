@@ -5,7 +5,7 @@ using UnityEngine;
 public class Asteroid : MonoBehaviour
 {
     [SerializeField]
-    private float _rotateSpeed = 19.0f;
+    private float _rotateSpeed = 10.0f;
     [SerializeField]
     private GameObject _explosionPrefab;
     private SpawnManager _spawnManager;
