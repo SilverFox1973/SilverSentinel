@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     private float _nextFire = -1f;
     [SerializeField]
     private int _lives = 3;
+
     private SpawnManager _spawnManager;
     
     private bool _isTripleShotActive = false;
@@ -24,6 +25,8 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private GameObject _shieldVisualizer;
+    [SerializeField]
+    private GameObject _rightWingFire, _leftWingFire;
 
     [SerializeField]
     private int _score;
@@ -125,7 +128,16 @@ public class Player : MonoBehaviour
         }
 
 
-        _lives -= 1;
+        _lives--;
+
+        if (_lives == 2)
+        {
+            _rightWingFire.SetActive(true);
+        }
+        else if (_lives ==1)
+        {
+            _leftWingFire.SetActive(true);
+        }
 
         _uiManager.UpdateLives(_lives);
 
