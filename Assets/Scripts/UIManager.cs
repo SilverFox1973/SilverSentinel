@@ -13,7 +13,7 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Sprite[] _liveSprites;
     [SerializeField]
-    private Image _LivesImg;
+    private Image _livesImg;
     [SerializeField]
     private TMP_Text _gameOverText;
     [SerializeField]
@@ -43,7 +43,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateLives(int currentLives)
     {
-        _LivesImg.sprite = _liveSprites[currentLives];
+        _livesImg.sprite = _liveSprites[currentLives];
 
         if (currentLives == 0)
         {
