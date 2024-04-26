@@ -171,7 +171,7 @@ MonoBehaviour:
   _enemyPrefab: {fileID: 8020425337564363394, guid: 2a13732f0de85664180ea2e5fa64f936,
     type: 3}
   _enemyContainer: {fileID: 648898121}
-  powerups:
+  _powerUps:
   - {fileID: 2596807662610508227, guid: 9193ad77a441739409d223a129480fed, type: 3}
   - {fileID: 5325060206789337556, guid: 78a36a87a6278bd4bbb8df31793e8fa0, type: 3}
   - {fileID: 6868805983925179215, guid: 93a16331fcb5e354fac763ab40f88634, type: 3}
@@ -296,8 +296,8 @@ Transform:
   m_GameObject: {fileID: 304909494}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.45, z: 0}
-  m_LocalScale: {x: 0.75, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -3.4, z: 0}
+  m_LocalScale: {x: 0.35, y: 1.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 460172584}
