@@ -5,12 +5,14 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    private float _speed = 4.5f;
-    private float _speedMultiplier = 2;
+    private float _playerSpeed = 4.5f;
+    private float _speedMultiplier = 3;
+    private float _thrusterMultiplier = 2;
+
+    [SerializeField]
+    private GameObject _tripleShotPrefab; 
     [SerializeField]
     private GameObject _laserPrefab;
-    [SerializeField]
-    private GameObject _tripleShotPrefab;
     [SerializeField]
     private float _fireRate = 0.25f;
     private float _nextFire = -1f;
@@ -90,12 +92,12 @@ public class Player : MonoBehaviour
 
         if (_isSpeedBoostActive == false)
         {
-            transform.Translate(direction * _speed * Time.deltaTime);
+            transform.Translate(direction * _playerSpeed * Time.deltaTime);
         }
 
         else
         {
-            transform.Translate(direction * (_speed * _speedMultiplier) * Time.deltaTime);
+            transform.Translate(direction * (_playerSpeed * _speedMultiplier) * Time.deltaTime);
         }
         
         
