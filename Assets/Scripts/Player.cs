@@ -6,8 +6,8 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     private float _playerSpeed = 4.5f;
-    private float _speedMultiplier = 3;
-    private float _thrusterMultiplier = 2;
+    private float _speedMultiplier = 3f;
+    
 
     [SerializeField]
     private GameObject _tripleShotPrefab; 
@@ -87,20 +87,19 @@ public class Player : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
 
 
-        Vector3 direction = new Vector3(horizontalInput, verticalInput, 0);
-       
+        Vector3 _direction = new Vector3(horizontalInput, verticalInput, 0);
 
         if (_isSpeedBoostActive == false)
         {
-            transform.Translate(direction * _playerSpeed * Time.deltaTime);
+            transform.Translate(_direction * _playerSpeed * Time.deltaTime);
         }
 
         else
         {
-            transform.Translate(direction * (_playerSpeed * _speedMultiplier) * Time.deltaTime);
+            transform.Translate(_direction * (_playerSpeed * _speedMultiplier) * Time.deltaTime);
         }
-        
-        
+
+
         if (transform.position.y >= 0)
         {
             transform.position = new Vector3(transform.position.x, 0, 0);
@@ -206,4 +205,5 @@ public class Player : MonoBehaviour
         _uiManager.UpdateScore(_score);
     }
 
-}
+    
+    }

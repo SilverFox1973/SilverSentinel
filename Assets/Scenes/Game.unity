@@ -726,7 +726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c8c7698ccd2de84bbb764665d227010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
+  _playerSpeed: 4.5
   _tripleShotPrefab: {fileID: 499337907038951369, guid: ffa6fe1625459d043aa2dbdabca83de8,
     type: 3}
   _laserPrefab: {fileID: 3815116354344420502, guid: 245f57ae55f4f194c8a6d3a4ea5f9b36,
@@ -1386,7 +1386,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 351f30ffb741fd643b82bde90a222699, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2f159bed8b1803f4c99f09812de14e56, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
