@@ -6,8 +6,9 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     private float _playerSpeed = 4.5f;
-    private float _speedMultiplier = 3f;
+    private float _speedMultiplier = 2.5f;
     
+
 
     [SerializeField]
     private GameObject _tripleShotPrefab; 
@@ -24,6 +25,7 @@ public class Player : MonoBehaviour
     private bool _isTripleShotActive = false;
     private bool _isSpeedBoostActive = false;
     private bool _isShieldsActive = false;
+    private bool _isThrusterEngaged = false;
 
     [SerializeField]
     private GameObject _shieldVisualizer;
@@ -71,6 +73,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         CalculateMovement();
 
         if (Input.GetKeyDown(KeyCode.Space) && Time.time > _nextFire)
@@ -89,16 +92,7 @@ public class Player : MonoBehaviour
 
         Vector3 _direction = new Vector3(horizontalInput, verticalInput, 0);
 
-        if (_isSpeedBoostActive == false)
-        {
-            transform.Translate(_direction * _playerSpeed * Time.deltaTime);
-        }
-
-        else
-        {
-            transform.Translate(_direction * (_playerSpeed * _speedMultiplier) * Time.deltaTime);
-        }
-
+        transform.Translate(_direction * ThrustBoost() * Time.deltaTime); 
 
         if (transform.position.y >= 0)
         {
@@ -116,6 +110,15 @@ public class Player : MonoBehaviour
         else if (transform.position.x < -11.3f)
         {
             transform.position = new Vector3(11.3f, transform.position.y, 0);
+        }
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            _isThrusterEngaged = true;
+        }
+        else
+        {
+            _isThrusterEngaged = false;
         }
     }
 
@@ -182,6 +185,7 @@ public class Player : MonoBehaviour
     public void SpeedBoostActive()
     {
         _isSpeedBoostActive = true;
+        _playerSpeed *= _speedMultiplier;
         StartCoroutine(SpeedBoostPowerDownRoutine());
     }
 
@@ -189,21 +193,24 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(5.0f);
         _isSpeedBoostActive = false;
+        _playerSpeed /= _speedMultiplier;
     }
 
+    private float ThrustBoost()
+    {
+        return (_playerSpeed * (_isThrusterEngaged ? 2.0f : 1.0f) * (_isSpeedBoostActive ? 2.0f : 1.0f));
+    }
     public void ShieldsActive()
     {
         _isShieldsActive = true;
         _shieldVisualizer.SetActive(true);
     }
 
-    //create method to add 10 to score!
-    //Communicate with the UI to update the score!
     public void AddScore(int points)
     {
         _score += points;
         _uiManager.UpdateScore(_score);
     }
 
-    
-    }
+
+}
