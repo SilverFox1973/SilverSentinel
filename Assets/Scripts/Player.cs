@@ -161,13 +161,13 @@ public class Player : MonoBehaviour
             switch (_shieldHealth)
             {
                 case 1:
-                    _shieldVisualizer.GetComponent<SpriteRenderer>().color = new Color(16, 218, 30, 255);
+                    _shieldVisualizer.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 1);
                     break;
                 case 2:
-                    _shieldVisualizer.GetComponent<SpriteRenderer>().color = new Color(255, 255, 0, 255);
+                    _shieldVisualizer.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 1);
                     break;
                 case 3:
-                    _shieldVisualizer.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0, 255);
+                    _shieldVisualizer.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 1);
                     break;
             }
         }
