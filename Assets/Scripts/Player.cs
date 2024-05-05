@@ -30,6 +30,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject _shieldVisualizer;
     [SerializeField]
+    private int _shieldHealth = 3;
+    [SerializeField]
     private GameObject _rightWingFire, _leftWingFire;
 
     [SerializeField]
@@ -144,11 +146,31 @@ public class Player : MonoBehaviour
     {
         if (_isShieldsActive == true)
         {
-            _isShieldsActive = false;
-            _shieldVisualizer.SetActive(false);
+            _shieldHealth--;
+
+            if (_shieldHealth < 1)
+            {
+                _isShieldsActive = false;
+                _shieldVisualizer.SetActive(false);
+            }
             return;
         }
 
+        if (_isShieldsActive)
+        {
+            switch (_shieldHealth)
+            {
+                case 1:
+                    _shieldVisualizer.GetComponent<SpriteRenderer>().color = new Color(16, 218, 30, 255);
+                    break;
+                case 2:
+                    _shieldVisualizer.GetComponent<SpriteRenderer>().color = new Color(255, 255, 0, 255);
+                    break;
+                case 3:
+                    _shieldVisualizer.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0, 255);
+                    break;
+            }
+        }
 
         _lives--;
 
