@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     private float _playerSpeed = 4.5f;
-    private float _speedMultiplier = 2.5f;
+    private float _speedMultiplier = 2f;
     
 
 
@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
 
     private bool _isTripleShotActive = false;
     private bool _isSpeedBoostActive = false;
+    [SerializeField]
     private bool _isShieldsActive = false;
     private bool _isThrusterEngaged = false;
 
@@ -155,7 +156,7 @@ public class Player : MonoBehaviour
 
                 return;
             }
-            
+        
         }
 
         if (_isShieldsActive)
@@ -172,7 +173,7 @@ public class Player : MonoBehaviour
                     _shieldVisualizer.GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
                     break;
             }
-
+            return;
         }
 
         _lives--;
