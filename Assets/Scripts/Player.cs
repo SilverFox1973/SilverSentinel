@@ -166,10 +166,10 @@ public class Player : MonoBehaviour
                     _shieldVisualizer.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 1);
                     break;
                 case 2:
-                    _shieldVisualizer.GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
+                    _shieldVisualizer.GetComponent<SpriteRenderer>().color = new Color(1, 1, 0, 1);
                     break;
                 case 3:
-                    _shieldVisualizer.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+                    _shieldVisualizer.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
                     break;
             }
 

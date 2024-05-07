@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2842645023940275695}
   - component: {fileID: 1319656253445950947}
   - component: {fileID: 6619407821479559254}
-  - component: {fileID: 7177272277175847422}
+  - component: {fileID: 510000818476004032}
   m_Layer: 0
   m_Name: Shields_Powerup
   m_TagString: Untagged
@@ -165,7 +165,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!95 &7177272277175847422
+--- !u!95 &510000818476004032
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
