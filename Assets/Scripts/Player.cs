@@ -38,6 +38,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int _score;
 
+    [SerializeField]
+    private int _ammoCount = 15;
+
     private UIManager _uiManager;
 
     //variable to store the audio clip
@@ -125,6 +128,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void AmmoCount(int ammo)
+    {
+        AmmoCount(-1);
+    }
+    
     void FireLaser()
     {
         _nextFire = Time.time + _fireRate;
