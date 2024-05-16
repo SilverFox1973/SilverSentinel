@@ -84,6 +84,10 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && Time.time > _nextFire)
         {
+            if (_ammoCount == 0)
+            {
+                return; 
+            }
             FireLaser();
         }
 
@@ -128,13 +132,15 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void AmmoCount(int ammo)
+    public void AmmoCount(int bolts)
     {
-        AmmoCount(-1);
+        _ammoCount += bolts;
+        _uiManager.updateAmmoCount(_ammoCount);
     }
     
     void FireLaser()
     {
+        AmmoCount(-1);
         _nextFire = Time.time + _fireRate;
 
         if (_isTripleShotActive == true)
@@ -146,10 +152,10 @@ public class Player : MonoBehaviour
             Instantiate(_laserPrefab, transform.position + new Vector3(0, 1.06f, 0), Quaternion.identity);
         }
 
-        //play the laser audio clip
         _audioSource.Play();
 
     }
+
 
     public void Damage()
     {
