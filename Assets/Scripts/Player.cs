@@ -137,6 +137,11 @@ public class Player : MonoBehaviour
         _ammoCount += bolts;
         _uiManager.updateAmmoCount(_ammoCount);
     }
+
+    public void AmmoRefillActive()
+    {
+        AmmoCount(+15);
+    }
     
     void FireLaser()
     {
