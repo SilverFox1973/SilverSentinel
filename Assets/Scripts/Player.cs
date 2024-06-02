@@ -7,8 +7,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _playerSpeed = 4.5f;
     private float _speedMultiplier = 2f;
-    
-
 
     [SerializeField]
     private GameObject _tripleShotPrefab; 
@@ -18,7 +16,7 @@ public class Player : MonoBehaviour
     private float _fireRate = 0.25f;
     private float _nextFire = -1f;
     [SerializeField]
-    private int _lives = 3;
+    private int _lives;
 
     private SpawnManager _spawnManager;
 
@@ -215,6 +213,23 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void AddLifeRefill()
+    {
+        if (_lives < 3)
+        {
+            _lives++;
+            if (_lives == 2)
+            {
+                _leftWingFire.SetActive(false);
+            }
+            else if ( _lives == 3) 
+            {
+                _rightWingFire.SetActive(false);
+            }
+            _uiManager.UpdateLives(_lives);
+        }
+    }
+    
     public void TripleShotActive()
     {
         _isTripleShotActive = true;
