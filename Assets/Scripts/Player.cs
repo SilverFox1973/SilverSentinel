@@ -100,7 +100,7 @@ public class Player : MonoBehaviour
 
         Vector3 _direction = new Vector3(horizontalInput, verticalInput, 0);
 
-        transform.Translate(_direction * ThrustBoost() * Time.deltaTime); 
+        transform.Translate(_direction * (ThrustBoost() * Time.deltaTime)); 
 
         if (transform.position.y >= 0)
         {
