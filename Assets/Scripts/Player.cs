@@ -170,7 +170,7 @@ public class Player : MonoBehaviour
             {
                 _isShieldsActive = false;
                 _shieldVisualizer.SetActive(false);
-
+                
                 return;
             }
         
@@ -190,6 +190,7 @@ public class Player : MonoBehaviour
                     _shieldVisualizer.GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
                     break;
             }
+            
             return;
         }
 
