@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
@@ -9,7 +10,11 @@ public class Player : MonoBehaviour
     private float _speedMultiplier = 2f;
 
     [SerializeField]
-    private GameObject _tripleShotPrefab; 
+    private GameObject _tripleShotPrefab;
+   
+    [SerializeField]
+    private GameObject _sprayShotPrefab;
+
     [SerializeField]
     private GameObject _laserPrefab;
     [SerializeField]
@@ -22,9 +27,9 @@ public class Player : MonoBehaviour
 
     private bool _isTripleShotActive = false;
     private bool _isSpeedBoostActive = false;
-    [SerializeField]
     private bool _isShieldsActive = false;
     private bool _isThrusterEngaged = false;
+    private bool _isSprayShotActive = false;
 
     [SerializeField]
     private GameObject _shieldVisualizer;
@@ -149,6 +154,13 @@ public class Player : MonoBehaviour
         if (_isTripleShotActive == true)
         {
             Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
+        }
+
+        //Check to see if Spray Shot is enabled.
+        else if (_isSprayShotActive == true)
+        {
+            Instantiate(_sprayShotPrefab, transform.position + new Vector3(-1.08f, 0.25f, 0), Quaternion.identity);
+
         }
         else
         {
