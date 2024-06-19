@@ -255,6 +255,18 @@ public class Player : MonoBehaviour
         _isTripleShotActive = false;
     }
 
+    public void SprayShotActive()
+    {
+        _isSprayShotActive = true;
+        StartCoroutine(SprayShotPowerDownRoutine());
+    }
+
+    IEnumerator SprayShotPowerDownRoutine()
+    {
+        yield return new WaitForSeconds(5.0f);
+        _isSprayShotActive = false;
+    }
+
     public void SpeedBoostActive()
     {
         _isSpeedBoostActive = true;

@@ -53,10 +53,14 @@ public class Powerup : MonoBehaviour
                     case 4:
                         player.AddLifeRefill();
                         break;
+                    case 5:
+                        player.SprayShotActive();
+                        break;
                     default:
                         Debug.Log("Default Value");
-                        break;
+                        break;  
                 }
+                
 
             }
 
