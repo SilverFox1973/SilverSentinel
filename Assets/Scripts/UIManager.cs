@@ -17,10 +17,16 @@ public class UIManager : MonoBehaviour
     private Sprite[] _liveSprites;
     [SerializeField]
     private Image _livesImg;
+
     [SerializeField]
     private TMP_Text _gameOverText;
     [SerializeField]
     private TMP_Text _restartText;
+
+    [SerializeField]
+    private Slider _thrusterBar;
+    [SerializeField]
+    private GameObject _thrusterFill;
 
     private GameManager _gameManager;
 
@@ -56,7 +62,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void updateAmmoCount(int playerAmmo)
+    public void UpdateAmmoCount(int playerAmmo)
     {
         _ammoCountText.text = "Ammo: " + playerAmmo.ToString();
     }
@@ -67,6 +73,15 @@ public class UIManager : MonoBehaviour
         _gameOverText.gameObject.SetActive(true);
         _restartText.gameObject.SetActive(true);
         StartCoroutine(GameOverFlashRoutine());
+    }
+    
+    public void UpdateThrusterBar(float value, bool isRecharging)
+    {
+        if (isRecharging)
+            _thrusterFill.GetComponent <Image>().color = Color.red;
+        else
+            _thrusterFill.GetComponent <Image>().color = Color.HSVToRGB(.43f, 1f, 1f);
+        _thrusterBar.value = value;
     }
 
     IEnumerator GameOverFlashRoutine()

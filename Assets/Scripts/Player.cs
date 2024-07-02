@@ -138,7 +138,7 @@ public class Player : MonoBehaviour
     public void AmmoCount(int bolts)
     {
         _ammoCount += bolts;
-        _uiManager.updateAmmoCount(_ammoCount);
+        _uiManager.UpdateAmmoCount(_ammoCount);
     }
 
     public void AmmoRefillActive()
