@@ -23,10 +23,6 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private TMP_Text _restartText;
 
-    [SerializeField]
-    private Slider _thrusterBar;
-    [SerializeField]
-    private GameObject _thrusterFill;
 
     private GameManager _gameManager;
 
@@ -75,14 +71,6 @@ public class UIManager : MonoBehaviour
         StartCoroutine(GameOverFlashRoutine());
     }
     
-    public void UpdateThrusterBar(float value, bool isRecharging)
-    {
-        if (isRecharging)
-            _thrusterFill.GetComponent <Image>().color = Color.red;
-        else
-            _thrusterFill.GetComponent <Image>().color = Color.HSVToRGB(.43f, 1f, 1f);
-        _thrusterBar.value = value;
-    }
 
     IEnumerator GameOverFlashRoutine()
     {
