@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -7,7 +8,6 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     private float _playerSpeed = 4.5f;
-    private float _speedMultiplier = 2f;
 
     [SerializeField]
     private GameObject _tripleShotPrefab;
@@ -44,6 +44,11 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int _ammoCount = 15;
 
+    private float _thrusterMaxEnergy = 100;
+    private float _thrusterCurrentEnergy;
+    [SerializeField]
+    private float _thrusterEnergyMultiply = 10f;
+
     private UIManager _uiManager;
 
     //variable to store the audio clip
@@ -77,6 +82,9 @@ public class Player : MonoBehaviour
         {
             _audioSource.clip = _laserFire;
         }
+
+        _thrusterCurrentEnergy = _thrusterMaxEnergy;
+        _uiManager.UpdateThrusterBar(_thrusterCurrentEnergy);  
     }
 
     // Update is called once per frame
@@ -125,14 +133,22 @@ public class Player : MonoBehaviour
             transform.position = new Vector3(11.3f, transform.position.y, 0);
         }
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && _thrusterCurrentEnergy > 0)
         {
             _isThrusterEngaged = true;
+            _thrusterCurrentEnergy -= Time.deltaTime * _thrusterEnergyMultiply;
+            _uiManager.UpdateThrusterBar(_thrusterCurrentEnergy);
         }
         else
         {
             _isThrusterEngaged = false;
+            if (_thrusterCurrentEnergy < _thrusterMaxEnergy)
+            {
+                _thrusterCurrentEnergy += Time.deltaTime * _thrusterEnergyMultiply;
+                _uiManager.UpdateThrusterBar(_thrusterCurrentEnergy);
+            }
         }
+            
     }
 
     public void AmmoCount(int bolts)
@@ -270,7 +286,6 @@ public class Player : MonoBehaviour
     public void SpeedBoostActive()
     {
         _isSpeedBoostActive = true;
-        _playerSpeed *= _speedMultiplier;
         StartCoroutine(SpeedBoostPowerDownRoutine());
     }
 
@@ -278,13 +293,14 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(5.0f);
         _isSpeedBoostActive = false;
-        _playerSpeed /= _speedMultiplier;
     }
 
     private float ThrustBoost()
     {
+        //Return a value based of Player Speed and whether Thruster is active and Speed Powerup is picked up
         return (_playerSpeed * (_isThrusterEngaged ? 2.0f : 1.0f) * (_isSpeedBoostActive ? 2.0f : 1.0f));
     }
+
     public void ShieldsActive()
     {
         _isShieldsActive = true;

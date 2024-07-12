@@ -19,6 +19,10 @@ public class UIManager : MonoBehaviour
     private Image _livesImg;
 
     [SerializeField]
+    private Slider _thrusterBar;
+
+
+    [SerializeField]
     private TMP_Text _gameOverText;
     [SerializeField]
     private TMP_Text _restartText;
@@ -61,6 +65,11 @@ public class UIManager : MonoBehaviour
     public void UpdateAmmoCount(int playerAmmo)
     {
         _ammoCountText.text = "Ammo: " + playerAmmo.ToString();
+    }
+
+    public void UpdateThrusterBar(float thrusterEnergy)
+    {
+        _thrusterBar.value = thrusterEnergy;
     }
 
     void GameOverSequence()
