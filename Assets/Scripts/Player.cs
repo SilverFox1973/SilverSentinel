@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     private float _nextFire = -1f;
     [SerializeField]
     private int _lives;
-
+     
     private SpawnManager _spawnManager;
 
     private bool _isTripleShotActive = false;
@@ -45,7 +45,9 @@ public class Player : MonoBehaviour
     private int _ammoCount = 15;
 
     private float _thrusterMaxEnergy = 100;
+
     private float _thrusterCurrentEnergy;
+
     [SerializeField]
     private float _thrusterEnergyMultiply = 10f;
 

@@ -21,7 +21,6 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Slider _thrusterBar;
 
-
     [SerializeField]
     private TMP_Text _gameOverText;
     [SerializeField]
