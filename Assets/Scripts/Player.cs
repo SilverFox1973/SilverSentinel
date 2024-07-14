@@ -115,7 +115,7 @@ public class Player : MonoBehaviour
 
         Vector3 _direction = new Vector3(horizontalInput, verticalInput, 0);
 
-        transform.Translate(_direction * (ThrustBoost() * Time.deltaTime)); 
+        transform.Translate(_direction * (CalculateSpeed() * Time.deltaTime)); 
 
         if (transform.position.y >= 0)
         {
@@ -297,10 +297,25 @@ public class Player : MonoBehaviour
         _isSpeedBoostActive = false;
     }
 
-    private float ThrustBoost()
+    private float CalculateSpeed()
     {
-        //Return a value based of Player Speed and whether Thruster is active and Speed Powerup is picked up
-        return (_playerSpeed * (_isThrusterEngaged ? 2.0f : 1.0f) * (_isSpeedBoostActive ? 2.0f : 1.0f));
+        float speedMultiplier = 1.0f;
+
+        if (_isThrusterEngaged)
+        {
+            speedMultiplier *= 2.0f;
+        }
+
+        if (_isSpeedBoostActive)
+        {
+            speedMultiplier *= 2.0f;
+        }
+        //_isThrusterEngaged = False and _isSpeedBoostActive = False then speedMultipler = 1
+        //_isThrusterEngaged = True and _isSpeedBoostActive = False then speedMultipler = 2
+        //_isThrusterEngaged = False and _isSpeedBoostActive = True then speedMultipler = 2
+        //_isThrusterEngaged = True and _isSpeedBoostActive = True then speedMultipler = 4
+
+        return _playerSpeed * speedMultiplier;
     }
 
     public void ShieldsActive()
