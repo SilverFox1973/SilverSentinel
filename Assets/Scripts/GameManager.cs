@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +9,17 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private bool _isGameOver;
 
+    private UIManager _uiManager;
+
+    private void Start()
+    {
+        _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+
+        if (_uiManager == null)
+        {
+            Debug.LogError("The UI Manager is NULL!");
+        }
+    }
     private void Update()
     {
         //if the r key was pressed
@@ -28,6 +40,11 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     { 
         _isGameOver = true;
+    }
+
+    public void CameraShaker()
+    {
+        _uiManager.ShakeCamera();  
     }
 
 }

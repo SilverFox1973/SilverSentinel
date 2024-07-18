@@ -52,6 +52,7 @@ public class Player : MonoBehaviour
     private float _thrusterEnergyMultiply = 10f;
 
     private UIManager _uiManager;
+    private GameManager _gameManager;
 
     //variable to store the audio clip
     [SerializeField]
@@ -65,6 +66,7 @@ public class Player : MonoBehaviour
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         _audioSource = GetComponent<AudioSource>();
+        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         if (_spawnManager == null)
         {
@@ -74,6 +76,11 @@ public class Player : MonoBehaviour
         if (_uiManager == null)
         {
             Debug.LogError("The UI Manager is NULL!");
+        }
+
+        if (_gameManager == null)
+        {
+            Debug.LogError("The Game Manager is NULL!");
         }
 
         if (_audioSource == null)
@@ -225,6 +232,7 @@ public class Player : MonoBehaviour
         }
 
         _lives--;
+        _gameManager.CameraShaker();
 
         if (_lives == 2)
         {

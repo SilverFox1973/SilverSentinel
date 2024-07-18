@@ -27,6 +27,10 @@ public class UIManager : MonoBehaviour
     private TMP_Text _restartText;
 
 
+    private Camera _camera;
+    private CameraShake _cameraShaker;
+
+
     private GameManager _gameManager;
 
 
@@ -38,13 +42,33 @@ public class UIManager : MonoBehaviour
         _scoreText.text = "Score: " + 00;
 
         _gameOverText.gameObject.SetActive(false);
-        _gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
+        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        _cameraShaker =GameObject.Find("Main Camera").GetComponent<CameraShake>();
 
         if (_gameManager == null)
         {
             Debug.LogError("GameManager in NULL");
         }
+
+        _camera = Camera.main;
+        
+        if (_camera == null)
+        {
+            Debug.LogError(message: "Main Camera is Null on UI Manager!");
+        }
+        else
+        {
+            _cameraShaker = _camera.GetComponent<CameraShake>();
+            if (_cameraShaker == null) 
+            {
+                Debug.LogError(message: "Camera Shaker is Null on UI Manager!");
+            }
+        }
+
+
     }
+
 
     public void UpdateScore(int playerScore)
     {
@@ -88,6 +112,18 @@ public class UIManager : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             _gameOverText.text = "";
             yield return new WaitForSeconds(0.5f);
+        }
+    }
+
+    public void ShakeCamera()
+    {
+        if (_cameraShaker == null)
+        {
+            Debug.LogError(message: "Camera Shaker is missing from UI Manager!");
+        }
+        else
+        {
+            StartCoroutine(routine: _cameraShaker.CameraShaker(duration: 0.2f, magnitude: 0.3f));
         }
     }
 }
