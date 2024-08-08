@@ -57,7 +57,7 @@ public class Enemy : MonoBehaviour
 
     void CalculateMovement() 
     {
-        transform.Translate(Vector3.down * _enemySpeed * Time.deltaTime);
+        transform.Translate(new Vector3(1, -1, 0) * _enemySpeed * Time.deltaTime);
 
         if (transform.position.y < -5.5f)
         {
