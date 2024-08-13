@@ -16,17 +16,17 @@ public class SpawnManager : MonoBehaviour
     private int GetPowerup()
     {
         int number = Random.Range(0, 10);
-        int randomRowerup;
+        int randomPowerup;
 
         if (number < 9)
         {
-            randomRowerup = Random.Range(0, 5);
+            randomPowerup = Random.Range(0, 5);
         }
         else
         {
-            randomRowerup = 5;
+            randomPowerup = 5;
         }
-        return randomRowerup;
+        return randomPowerup;
     }
 
     public void StartSpawning()
