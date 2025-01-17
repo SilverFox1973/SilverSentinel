@@ -61,7 +61,7 @@ public class Enemy : MonoBehaviour
 
         if (transform.position.y < -5.5f)
         {
-            float randomX = Random.Range(-9f, 9f);
+            float randomX = Random.Range(-12f, 12f);
             transform.position = new Vector3(randomX, 7, 0);
         }
     }
