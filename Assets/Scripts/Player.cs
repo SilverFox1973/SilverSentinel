@@ -10,13 +10,12 @@ public class Player : MonoBehaviour
     private float _playerSpeed = 4.5f;
 
     [SerializeField]
+    private GameObject _laserPrefab;
+    [SerializeField]
     private GameObject _tripleShotPrefab;
-   
     [SerializeField]
     private GameObject _sprayShotPrefab;
 
-    [SerializeField]
-    private GameObject _laserPrefab;
     [SerializeField]
     private float _fireRate = 0.25f;
     private float _nextFire = -1f;
