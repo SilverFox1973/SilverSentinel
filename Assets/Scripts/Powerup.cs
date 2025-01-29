@@ -59,9 +59,7 @@ public class Powerup : MonoBehaviour
                     default:
                         Debug.Log("Default Value");
                         break;  
-                }
-                
-
+                }  
             }
 
             Destroy(this.gameObject);

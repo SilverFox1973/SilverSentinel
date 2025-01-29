@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    private float _playerSpeed = 4.5f;
+    private float _playerSpeed = 4.0f;
 
     [SerializeField]
     private GameObject _laserPrefab;
@@ -211,7 +211,7 @@ public class Player : MonoBehaviour
                 
                 return;
             }
-        
+           
         }
 
         if (_isShieldsActive)
