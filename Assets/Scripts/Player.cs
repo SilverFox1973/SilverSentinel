@@ -200,15 +200,15 @@ public class Player : MonoBehaviour
 
     public void Damage()
     {
-        if (_isShieldsActive == true)
+        if (_isShieldsActive == true )
         {
             _shieldHealth--;
+            
 
             if (_shieldHealth < 1)
             {
                 _isShieldsActive = false;
                 _shieldVisualizer.SetActive(false);
-                
                 return;
             }
            
@@ -219,13 +219,13 @@ public class Player : MonoBehaviour
             switch (_shieldHealth)
             {
                 case 1:
-                    _shieldVisualizer.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 1);
+                    _shieldVisualizer.GetComponent<SpriteRenderer>().color = Color.red;
                     break;
                 case 2:
-                    _shieldVisualizer.GetComponent<SpriteRenderer>().color = new Color(1, 1, 0, 1);
+                    _shieldVisualizer.GetComponent<SpriteRenderer>().color = Color.yellow;
                     break;
                 case 3:
-                    _shieldVisualizer.GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
+                    _shieldVisualizer.GetComponent<SpriteRenderer>().color = Color.green;
                     break;
             }
             
@@ -330,7 +330,9 @@ public class Player : MonoBehaviour
     public void ShieldsActive()
     {
         _isShieldsActive = true;
+        _shieldHealth = 3;
         _shieldVisualizer.SetActive(true);
+        _shieldVisualizer.GetComponent<SpriteRenderer>().color = Color.green;
     }
 
     public void AddScore(int points)
