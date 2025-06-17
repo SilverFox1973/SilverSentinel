@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
     private int _score;
 
     [SerializeField]
-    private int _ammoCount = 15;
+    private int _startingAmmoCount = 15;
 
     private float _thrusterMaxEnergy = 100;
 
@@ -105,7 +105,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && Time.time > _nextFire)
         {
-            if (_ammoCount == 0)
+            if (_startingAmmoCount == 0)
             {
                 return; 
             }
@@ -163,8 +163,8 @@ public class Player : MonoBehaviour
 
     public void AmmoCount(int bolts)
     {
-        _ammoCount += bolts;
-        _uiManager.UpdateAmmoCount(_ammoCount);
+        _startingAmmoCount += bolts;
+        _uiManager.UpdateAmmoCount(_startingAmmoCount);
     }
 
     public void AmmoRefillActive()
