@@ -5,10 +5,15 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 
 {
-    [SerializeField]
-    private float _enemySpeed = 4.0f;
-    [SerializeField]
-    private GameObject _laserPrefab;
+    [SerializeField] private float _speed = 4.0f;
+
+    [Header("Boundary")]
+    [SerializeField] private float _topBounds;
+    [SerializeField] private float _bottomBounds;
+    [SerializeField] private float _leftBounds;
+    [SerializeField] private float _rightBounds;
+
+    [SerializeField] private GameObject _laserPrefab;
 
     private Player _player;
 
@@ -57,19 +62,19 @@ public class Enemy : MonoBehaviour
 
     void CalculateMovement() 
     {
-        transform.Translate(new Vector3(1, -1, 0) * _enemySpeed * Time.deltaTime);
+        transform.Translate(Vector2.down * (_speed * Time.deltaTime));
 
-        if (transform.position.y < -5.5f)
+        if (transform.position.y < _bottomBounds)
         {
-            float randomX = Random.Range(-12f, 12f);
-            transform.position = new Vector3(randomX, 7, 0);
+            float randomX = Random.Range(_leftBounds, _rightBounds);
+            transform.position = new Vector2(randomX, _topBounds);
         }
     }
     
     public void EnemyDeath()
     {
         _enemyAnim.SetTrigger("OnEnemyDeath");
-        _enemySpeed = 0;
+        _speed = 0;
         _audioSource.Play();
         Destroy(GetComponent<Collider2D>());
         Destroy(this.gameObject, 2.5f);

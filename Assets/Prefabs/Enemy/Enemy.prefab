@@ -49,7 +49,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dcf32016b027094888bc7e3af25ddde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemySpeed: 4
+  _speed: 4
+  _topBounds: 8
+  _bottomBounds: -6.5
+  _leftBounds: -9.25
+  _rightBounds: 9.25
   _laserPrefab: {fileID: 601959180998120604, guid: 3df577bf1b5ec954e9bbae4b4895009c,
     type: 3}
 --- !u!212 &3482857114540939799
