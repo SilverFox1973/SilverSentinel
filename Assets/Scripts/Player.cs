@@ -6,56 +6,43 @@ using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField]
-    private float _playerSpeed = 4.0f;
-
-    [SerializeField]
-    private GameObject _laserPrefab;
-    [SerializeField]
-    private GameObject _tripleShotPrefab;
-    [SerializeField]
-    private GameObject _sprayShotPrefab;
-
-    [SerializeField]
-    private float _fireRate = 0.25f;
-    private float _nextFire = -1f;
-    [SerializeField]
-    private int _lives;
-     
-    private SpawnManager _spawnManager;
-
+    [Header("Speed Settings")]
+    [SerializeField] private float _playerSpeed = 4.0f;
     private bool _isTripleShotActive = false;
     private bool _isSpeedBoostActive = false;
     private bool _isShieldsActive = false;
     private bool _isThrusterEngaged = false;
     private bool _isSprayShotActive = false;
-
-    [SerializeField]
-    private GameObject _shieldVisualizer;
-    [SerializeField]
-    private int _shieldHealth = 3;
-    [SerializeField]
-    private GameObject _rightWingFire, _leftWingFire;
-
-    [SerializeField]
-    private int _score;
-
-    [SerializeField]
-    private int _startingAmmoCount = 15;
+    [SerializeField] private int _startingAmmoCount = 15;
 
     private float _thrusterMaxEnergy = 100;
-
     private float _thrusterCurrentEnergy;
+    [SerializeField] private float _thrusterEnergyMultiply = 10f;
+
+    [Header("Weapon Settings")]
+    [SerializeField] private GameObject _laserPrefab;
+    [SerializeField] private GameObject _tripleShotPrefab;
+    [SerializeField] private GameObject _sprayShotPrefab;
 
     [SerializeField]
-    private float _thrusterEnergyMultiply = 10f;
+    private float _fireRate = 0.25f;
+    private float _nextFire = -1f;
+
+    [Header("Damage Settings")]
+    [SerializeField] private int _lives;
+    [SerializeField] private GameObject _shieldVisualizer;
+    [SerializeField] private int _shieldHealth = 3;
+    [SerializeField] private GameObject _rightWingFire, _leftWingFire;
+     
+    private SpawnManager _spawnManager;
+
+    [SerializeField] private int _score;
 
     private UIManager _uiManager;
     private GameManager _gameManager;
 
     //variable to store the audio clip
-    [SerializeField]
-    private AudioClip _laserFire;
+    [SerializeField] private AudioClip _laserFire;
     private AudioSource _audioSource;
 
     // Start is called before the first frame update
