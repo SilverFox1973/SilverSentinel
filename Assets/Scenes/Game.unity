@@ -328,7 +328,6 @@ MonoBehaviour:
   _enemyPrefab: {fileID: 8020425337564363394, guid: 2a13732f0de85664180ea2e5fa64f936,
     type: 3}
   _enemyContainer: {fileID: 648898121}
-  _powerupContainer: {fileID: 227422614}
   _powerUps:
   - {fileID: 2596807662610508227, guid: 9193ad77a441739409d223a129480fed, type: 3}
   - {fileID: 5325060206789337556, guid: 78a36a87a6278bd4bbb8df31793e8fa0, type: 3}
@@ -336,6 +335,7 @@ MonoBehaviour:
   - {fileID: 1942445749513666752, guid: 053dcc5e341234c459c85a4bbd459719, type: 3}
   - {fileID: 86437473756764405, guid: 73b5e07ff037c6a449947517c1739cb1, type: 3}
   - {fileID: 6282004326846098024, guid: 23c70820260850745b0352189c8b6e2e, type: 3}
+  _powerupContainer: {fileID: 227422614}
 --- !u!1 &227422614
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,7 +613,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &304909495
 Transform:
   m_ObjectHideFlags: 0
@@ -1129,6 +1129,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerSpeed: 4.5
+  _startingAmmoCount: 15
+  _thrusterEnergyMultiply: 10
   _laserPrefab: {fileID: 3815116354344420502, guid: 245f57ae55f4f194c8a6d3a4ea5f9b36,
     type: 3}
   _tripleShotPrefab: {fileID: 499337907038951369, guid: ffa6fe1625459d043aa2dbdabca83de8,
@@ -1137,13 +1139,11 @@ MonoBehaviour:
     type: 3}
   _fireRate: 0.15
   _lives: 3
-  _shieldVisualizer: {fileID: 1570253580}
-  _shieldHealth: 3
   _rightWingFire: {fileID: 655794280}
   _leftWingFire: {fileID: 1118750537}
+  _shieldVisualizer: {fileID: 1570253580}
+  _shieldHealth: 3
   _score: 0
-  _startingAmmoCount: 15
-  _thrusterEnergyMultiply: 10
   _laserFire: {fileID: 8300000, guid: 75676f361bdfeaf41a46623e95df3dbc, type: 3}
 --- !u!212 &460172583
 SpriteRenderer:
@@ -2329,7 +2329,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1570253581
 Transform:
   m_ObjectHideFlags: 0
@@ -3094,11 +3094,11 @@ SceneRoots:
   - {fileID: 270664347}
   - {fileID: 7533720584816910038}
   - {fileID: 393695738}
+  - {fileID: 33698805}
   - {fileID: 1447690553}
   - {fileID: 1552616026}
   - {fileID: 1558582772}
   - {fileID: 460172584}
   - {fileID: 1451877751}
   - {fileID: 63660224}
-  - {fileID: 33698805}
   - {fileID: 884346855}

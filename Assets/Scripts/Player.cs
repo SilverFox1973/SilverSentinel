@@ -10,7 +10,6 @@ public class Player : MonoBehaviour
     [SerializeField] private float _playerSpeed = 4.0f;
     private bool _isTripleShotActive = false;
     private bool _isSpeedBoostActive = false;
-    private bool _isShieldsActive = false;
     private bool _isThrusterEngaged = false;
     private bool _isSprayShotActive = false;
     [SerializeField] private int _startingAmmoCount = 15;
@@ -24,22 +23,23 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject _tripleShotPrefab;
     [SerializeField] private GameObject _sprayShotPrefab;
 
-    [SerializeField]
-    private float _fireRate = 0.25f;
+    [SerializeField] private float _fireRate = 0.25f;
     private float _nextFire = -1f;
 
     [Header("Damage Settings")]
     [SerializeField] private int _lives;
+    [SerializeField] private GameObject _rightWingFire, _leftWingFire;
+
+    [Header("Shield Settings")]
     [SerializeField] private GameObject _shieldVisualizer;
     [SerializeField] private int _shieldHealth = 3;
-    [SerializeField] private GameObject _rightWingFire, _leftWingFire;
-     
+    private bool _isShieldsActive = false;
+
     private SpawnManager _spawnManager;
-
-    [SerializeField] private int _score;
-
     private UIManager _uiManager;
     private GameManager _gameManager;
+
+    [SerializeField] private int _score;
 
     //variable to store the audio clip
     [SerializeField] private AudioClip _laserFire;
@@ -173,32 +173,26 @@ public class Player : MonoBehaviour
         else if (_isSprayShotActive == true)
         {
             Instantiate(_sprayShotPrefab, transform.position + new Vector3(-1.08f, 0.25f, 0), Quaternion.identity);
-
         }
         else
         {
             Instantiate(_laserPrefab, transform.position + new Vector3(0, 1.06f, 0), Quaternion.identity);
         }
-
         _audioSource.Play();
-
     }
-
 
     public void Damage()
     {
         if (_isShieldsActive == true )
         {
-            _shieldHealth--;
-            
+            _shieldHealth--;   
 
             if (_shieldHealth < 1)
             {
                 _isShieldsActive = false;
                 _shieldVisualizer.SetActive(false);
                 return;
-            }
-           
+            }          
         }
 
         if (_isShieldsActive)
@@ -214,8 +208,7 @@ public class Player : MonoBehaviour
                 case 3:
                     _shieldVisualizer.GetComponent<SpriteRenderer>().color = Color.green;
                     break;
-            }
-            
+            }  
             return;
         }
 
