@@ -23,7 +23,7 @@ public class Laser : MonoBehaviour
 
     void MoveUp()
     {
-        transform.Translate(Vector3.up * _laserSpeed * Time.deltaTime);
+        transform.Translate(Vector2.up * _laserSpeed * Time.deltaTime);
 
         if (transform.position.y >= 8f)
         {
@@ -38,7 +38,7 @@ public class Laser : MonoBehaviour
 
     void MoveDown()
     {
-        transform.Translate(Vector3.down * _laserSpeed * Time.deltaTime);
+        transform.Translate(Vector2.down * _laserSpeed * Time.deltaTime);
 
         if (transform.position.y <= -8f)
         {
