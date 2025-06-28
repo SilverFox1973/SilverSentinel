@@ -520,8 +520,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Thrusters
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 0af277047c5b2724981f23ecb446f7e1, type: 2}
-  m_sharedMaterial: {fileID: 6300236396595898352, guid: 0af277047c5b2724981f23ecb446f7e1,
+  m_fontAsset: {fileID: 11400000, guid: 174eb5a15d0d8a14c9edb89ddee4360e, type: 2}
+  m_sharedMaterial: {fileID: 8810377905374847257, guid: 174eb5a15d0d8a14c9edb89ddee4360e,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -546,13 +546,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15
-  m_fontSizeBase: 15
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -1206,7 +1206,7 @@ Transform:
   m_GameObject: {fileID: 460172581}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.11, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1391,7 +1391,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 15, y: -5}
+  m_AnchoredPosition: {x: 15, y: 10}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &559751618
@@ -1450,7 +1450,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 17
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -2829,7 +2829,7 @@ PrefabInstance:
     - target: {fileID: 2195416731704081172, guid: dacc86015ae8a5446982c8a43570d9d7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.75
+      value: 3.6
       objectReference: {fileID: 0}
     - target: {fileID: 2195416731704081172, guid: dacc86015ae8a5446982c8a43570d9d7,
         type: 3}
