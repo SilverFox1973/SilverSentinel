@@ -5,29 +5,33 @@ using UnityEngine;
 public class Powerup : MonoBehaviour
 
 {
-    [SerializeField]
-    private float _powerupSpeed = 3.0f;
+    [SerializeField] private float _speed = 3.5f;
+    [SerializeField] private float _bottomBounds = -5.8f;
 
-    [SerializeField] //0 = Triple Shot 1 = Speed 2 = Shields 3 = Ammo Refill
-    private int powerupID;
-    [SerializeField]
-    private AudioClip _audioClip;
-
+    //0 = Triple Shot 1 = Speed 2 = Shields 3 = Ammo Refill, etc.
+    [SerializeField] private int powerupID;
+    [SerializeField] private AudioClip _audioClip;
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.down * (_powerupSpeed * Time.deltaTime));
+        CalculateMovement();
+    }
 
-        if (transform.position.y < -5.8f)
+    void CalculateMovement()
+    {
+        transform.Translate(Vector3.down * (_speed * Time.deltaTime));
+
+        if (transform.position.y < _bottomBounds)
         { 
-        Destroy(this.gameObject);
+            //Debug.Log(transform.position.y);
+            Destroy(this.gameObject);
         }
-
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        //Debug.Log($"Hit: {other.name}");
         if (other.tag == "Player")
         {
             Player player = other.transform.GetComponent<Player>();
