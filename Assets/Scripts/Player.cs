@@ -159,7 +159,7 @@ public class Player : MonoBehaviour
         AmmoCount(+15);
     }
     
-    void FireLaser()
+    private void FireLaser()
     {
         AmmoCount(-1);
         _nextFire = Time.time + _fireRate;

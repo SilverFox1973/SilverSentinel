@@ -20,7 +20,7 @@ public class Powerup : MonoBehaviour
 
     void CalculateMovement()
     {
-        transform.Translate(Vector3.down * (_speed * Time.deltaTime));
+        transform.Translate(Vector2.down * (_speed * Time.deltaTime));
 
         if (transform.position.y < _bottomBounds)
         { 
@@ -32,7 +32,7 @@ public class Powerup : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         //Debug.Log($"Hit: {other.name}");
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
             Player player = other.transform.GetComponent<Player>();
 
