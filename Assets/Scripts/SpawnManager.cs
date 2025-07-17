@@ -1,16 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private GameObject _enemyContainer;
     [SerializeField] private GameObject _enemyPrefab;
-    [SerializeField] private GameObject[] _powerUps;
     [SerializeField] private GameObject _powerupContainer;
+    [SerializeField] private GameObject[] _powerUps;
+
 
     private bool _stopSpawning = false;
-   
+
+    private void Start()
+    {
+       
+    }
+    
     private int GetPowerup()
     {
         int number = Random.Range(0, 10);

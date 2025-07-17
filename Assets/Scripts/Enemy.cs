@@ -52,11 +52,11 @@ public class Enemy : MonoBehaviour
             _canFire = Time.time + _fireRate;
             GameObject enemyLaser = Instantiate(_laserPrefab, transform.position, Quaternion.identity);
             Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();
-            
-            for (int i =0; i < lasers.Length; i++)
+
+            for (int i = 0; i < lasers.Length; i++)
             {
                 lasers[i].AssignEnemyLaser();
-            }         
+            }
         }
     }
 

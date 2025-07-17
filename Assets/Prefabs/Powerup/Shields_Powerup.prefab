@@ -100,8 +100,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fddb96be7c75e64c9305168844a196b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _powerupSpeed: 3
-  powerupID: 2
+  _speed: 3.5
+  _bottomBounds: -5.8
+  _powerupID: 2
   _audioClip: {fileID: 8300000, guid: 5ee343246919d2b4bba63ae629e95494, type: 3}
 --- !u!58 &1319656253445950947
 CircleCollider2D:
