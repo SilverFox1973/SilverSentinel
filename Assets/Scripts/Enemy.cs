@@ -13,14 +13,15 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float _leftBounds;
     [SerializeField] private float _rightBounds;
 
+    [Header("Weapon Settings")]
     [SerializeField] private GameObject _laserPrefab;
+    [SerializeField] private float _fireRate = 3.0f;
+    [SerializeField] private float _canFire = -1f;
 
     private Player _player;
 
     private Animator _enemyAnim;
     private AudioSource _audioSource;
-    private float _fireRate = 3.0f;
-    private float _canFire = -1f;
 
     //Start is called before the first frame update
     void Start()
@@ -52,11 +53,12 @@ public class Enemy : MonoBehaviour
             _canFire = Time.time + _fireRate;
             GameObject enemyLaser = Instantiate(_laserPrefab, transform.position, Quaternion.identity);
             Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();
-
+            
             for (int i = 0; i < lasers.Length; i++)
             {
                 lasers[i].AssignEnemyLaser();
             }
+            //Debug.Break();
         }
     }
 
@@ -90,9 +92,7 @@ public class Enemy : MonoBehaviour
             {
                 player.Damage();
             }
-       
-            EnemyDeath();
-             
+            EnemyDeath();   
         }
 
         if (other.tag == "Laser")
@@ -102,9 +102,7 @@ public class Enemy : MonoBehaviour
             {
                 _player.AddScore(10);
             }
-
             EnemyDeath();
-
         }
     }
 }

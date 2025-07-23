@@ -54,7 +54,7 @@ MonoBehaviour:
   _bottomBounds: -6.5
   _leftBounds: -9.25
   _rightBounds: 9.25
-  _laserPrefab: {fileID: 3815116354344420502, guid: 245f57ae55f4f194c8a6d3a4ea5f9b36,
+  _laserPrefab: {fileID: 1596879071701245671, guid: 3371a925ef055bb48be7d8c2ade76a4c,
     type: 3}
 --- !u!212 &3482857114540939799
 SpriteRenderer:

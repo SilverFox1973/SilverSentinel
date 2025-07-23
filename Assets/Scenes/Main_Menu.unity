@@ -883,7 +883,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Created by: \nGerald \"Silver Fox\" Patton"
+  m_text: "Created by: \nGerald \"Silver Fox\" Patton\nat GameDevHQ"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 52e80f26e4db7194d9235c46805dceb0, type: 2}
   m_sharedMaterial: {fileID: 6045358433179797423, guid: 52e80f26e4db7194d9235c46805dceb0,
@@ -917,7 +917,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 16
+  m_fontStyle: 32
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
