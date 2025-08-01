@@ -10,7 +10,11 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private GameObject _powerupContainer;
     [SerializeField] private GameObject[] _powerUps;
 
+    [Header("Enemy Wave Settings")]
+    [SerializeField] private int _enemyWaveCount = 5;
+    [SerializeField] private int _spawnedEnemyCount = 0;
 
+    [Space(10)]
     private bool _stopSpawning = false;
 
     private void Start()
@@ -46,12 +50,14 @@ public class SpawnManager : MonoBehaviour
 
         yield return new WaitForSeconds(5.0f);
 
-        while (_stopSpawning == false) 
+        _spawnedEnemyCount = 0;
+        while (_stopSpawning == false && _spawnedEnemyCount < _enemyWaveCount) 
         {
             Vector2 posToSpawn = new Vector2(Random.Range(-12f, 12f), 7);
             GameObject newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
             newEnemy.transform.parent = _enemyContainer.transform;
             yield return new WaitForSeconds(5.0f);
+            _spawnedEnemyCount++;
         }
     }
 
