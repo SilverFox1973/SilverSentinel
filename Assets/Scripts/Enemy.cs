@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject _laserPrefab;
     [SerializeField] private float _fireRate = 3.0f;
     [SerializeField] private float _canFire = -1f;
+    private bool _isAlive = true;
 
     private Player _player;
 
@@ -45,6 +46,9 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!_isAlive) //Ask if the Enemy is Alive.  If not, do not proceed with the code
+            return;
+
         CalculateMovement();
 
         if (Time.time > _canFire)
@@ -58,13 +62,12 @@ public class Enemy : MonoBehaviour
             {
                 lasers[i].AssignEnemyLaser();
             }
-            //Debug.Break();
         }
     }
 
     void CalculateMovement() 
     {
-        transform.Translate(Vector2.down * (_speed * Time.deltaTime));
+        transform.Translate(new Vector2(1f, -1f) * (_speed * Time.deltaTime));
 
         if (transform.position.y < _bottomBounds)
         {
@@ -75,11 +78,12 @@ public class Enemy : MonoBehaviour
     
     public void EnemyDeath()
     {
+        _isAlive = false; //prevents further firing
         _enemyAnim.SetTrigger("OnEnemyDeath");
         _speed = 0;
         _audioSource.Play();
         Destroy(GetComponent<Collider2D>());
-        Destroy(this.gameObject, 2.5f);
+        Destroy(this.gameObject, 2.5f); //Let's animation/sound play out
     }
 
     private void OnTriggerEnter2D(Collider2D other)
