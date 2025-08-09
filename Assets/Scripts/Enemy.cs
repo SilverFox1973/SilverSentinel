@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
     private bool _isAlive = true;
 
     private Player _player;
+    private SpawnManager _spawnManager;
 
     private Animator _enemyAnim;
     private AudioSource _audioSource;
@@ -28,18 +29,24 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
+        _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
         _audioSource = GetComponent<AudioSource>();
 
-        if (_player == null )
+        if (_player == null)
         {
             Debug.LogError("The Player in NULL.");
         }
 
         _enemyAnim = GetComponent<Animator>();
 
-        if (_enemyAnim == null ) 
+        if (_enemyAnim == null) 
         {
             Debug.LogError("The animator in NULL.");
+        }
+
+        if (_spawnManager == null)
+        {
+            Debug.LogError("Spawn Manager is NULL!");
         }
     }
 
@@ -64,6 +71,10 @@ public class Enemy : MonoBehaviour
             }
         }
     }
+    public void SpawnManager(SpawnManager manager)
+    {
+        _spawnManager = manager;
+    }
 
     void CalculateMovement() 
     {
@@ -83,6 +94,12 @@ public class Enemy : MonoBehaviour
         _speed = 0;
         _audioSource.Play();
         Destroy(GetComponent<Collider2D>());
+
+        if (_spawnManager != null)
+        {
+            _spawnManager.OnEnemyDestroyed();
+        }
+
         Destroy(this.gameObject, 2.5f); //Let's animation/sound play out
     }
 
