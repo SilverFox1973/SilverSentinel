@@ -19,21 +19,31 @@ public class SpawnManager : MonoBehaviour
 
     [SerializeField] private int _wave = 0;
     [SerializeField] private int _waveMultiplier = 5;
+    [SerializeField] private float _waveStartDelay = 5f;
 
     [Space(10)]
     private bool _stopSpawning = false;
 
     private void Start()
     {
-    
+        StartSpawning();
+    }
+
+    public void StartSpawning()
+    {
+        _wave = 0;
+        WaveAdvance();
+        StartCoroutine(SpawnPowerupRoutine());
     }
     
     private void WaveAdvance()
     {
         _wave++;
         _enemyWaveCount = _wave * _waveMultiplier;
-        StartCoroutine (SpawnEnemyRoutine());
-        Debug.Log("Wave Advanced");
+        _spawnedEnemyCount = 0; //reset for new wave
+
+        //Debug.Log($"Wave {_wave} starting in 10 seconds with {_enemyWaveCount} enemies...");
+        StartCoroutine(StartWaveAfterDelay(10f));
     }
     private int GetPowerup()
     {
@@ -51,28 +61,24 @@ public class SpawnManager : MonoBehaviour
         return randomPowerup;
     }
 
-    public void StartSpawning()
+    private IEnumerator StartWaveAfterDelay(float delay)
     {
+        yield return new WaitForSeconds(delay);
+        _aliveEnemyCount = 0; //Reset here before spawning
         StartCoroutine(SpawnEnemyRoutine());
-        StartCoroutine(SpawnPowerupRoutine());
     }
-
     IEnumerator SpawnEnemyRoutine()
     {
-        yield return null; 
-
-        yield return new WaitForSeconds(10.0f);
-
-        _spawnedEnemyCount = 0;
-        _aliveEnemyCount = 0;
-        while (_stopSpawning == false && _spawnedEnemyCount < _enemyWaveCount) 
+        while (!_stopSpawning  && _spawnedEnemyCount < _enemyWaveCount) 
         {
             Vector2 posToSpawn = new Vector2(Random.Range(-12f, 12f), 7);
             GameObject newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
             newEnemy.transform.parent = _enemyContainer.transform;
-            yield return new WaitForSeconds(5.0f);
+
             _spawnedEnemyCount++;
             _aliveEnemyCount++;
+            
+            yield return new WaitForSeconds(_waveStartDelay); //wait between spawns
         }  
     }
 
@@ -97,8 +103,9 @@ public class SpawnManager : MonoBehaviour
     public void OnEnemyDestroyed()
     {
         _aliveEnemyCount--;
+        //Debug.Log($"Enemy destroyed. Alive: {_aliveEnemyCount}");
 
-        if (_aliveEnemyCount <= 0 && _spawnedEnemyCount >= _enemyWaveCount)
+        if (_aliveEnemyCount <= 0 && _spawnedEnemyCount >= _enemyWaveCount && !_stopSpawning)
         {
             WaveAdvance();
         }
