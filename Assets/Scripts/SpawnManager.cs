@@ -12,20 +12,25 @@ public class SpawnManager : MonoBehaviour
 
     [Header("Enemy Wave Settings")]
     
-    [SerializeField] private int _enemyWaveCount = 5;
-    [SerializeField] private int _spawnedEnemyCount = 0;
-    [SerializeField] private int _aliveEnemyCount = 0;
+    private int _enemyWaveCount;
+    private int _spawnedEnemyCount = 0;
+    private int _aliveEnemyCount = 0;
     
 
     [SerializeField] private int _wave = 0;
     [SerializeField] private int _waveMultiplier = 5;
     [SerializeField] private float _waveStartDelay = 5f;
-
+    [SerializeField] private float _afterWaveDelay = 10f;
+    
+    
     [Space(10)]
     private bool _stopSpawning = false;
 
+    private UIManager _uiManager;
+
     private void Start()
     {
+        _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         StartSpawning();
     }
 
@@ -42,9 +47,12 @@ public class SpawnManager : MonoBehaviour
         _enemyWaveCount = _wave * _waveMultiplier;
         _spawnedEnemyCount = 0; //reset for new wave
 
+        FindObjectOfType<UIManager>().ShowWaveNumber(_wave);
+
         //Debug.Log($"Wave {_wave} starting in 10 seconds with {_enemyWaveCount} enemies...");
-        StartCoroutine(StartWaveAfterDelay(10f));
+        StartCoroutine(StartWaveAfterDelay(_afterWaveDelay));
     }
+
     private int GetPowerup()
     {
         int number = Random.Range(0, 10);
@@ -61,12 +69,24 @@ public class SpawnManager : MonoBehaviour
         return randomPowerup;
     }
 
+    
     private IEnumerator StartWaveAfterDelay(float delay)
     {
-        yield return new WaitForSeconds(delay);
+        if (_uiManager != null)
+        {
+            _uiManager.ShowWaveNumber(_wave); //Show "Wave X" UI
+        }
+
+        yield return new WaitForSeconds(5f);
+
+        //Wait the remaining delay time (delay - 5f)
+        float remainingDelay = Mathf.Max(0, delay - 5f);
+        yield return new WaitForSeconds(remainingDelay);
+
         _aliveEnemyCount = 0; //Reset here before spawning
         StartCoroutine(SpawnEnemyRoutine());
     }
+
     IEnumerator SpawnEnemyRoutine()
     {
         while (!_stopSpawning  && _spawnedEnemyCount < _enemyWaveCount) 

@@ -7,32 +7,25 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField]
-    private TMP_Text _scoreText;
+    [SerializeField] private TMP_Text _scoreText;
 
-    [SerializeField]
-    private TMP_Text _ammoCountText;
+    [SerializeField] private TMP_Text _ammoCountText;
 
-    [SerializeField]
-    private Sprite[] _liveSprites;
-    [SerializeField]
-    private Image _livesImg;
+    [SerializeField] private Sprite[] _liveSprites;
+    [SerializeField] private Image _livesImg;
 
-    [SerializeField]
-    private Slider _thrusterBar;
+    [SerializeField] private Slider _thrusterBar;
 
-    [SerializeField]
-    private TMP_Text _gameOverText;
-    [SerializeField]
-    private TMP_Text _restartText;
+    [SerializeField] private TMP_Text _gameOverText;
+    [SerializeField] private TMP_Text _restartText;
 
+    [SerializeField] private TMP_Text _waveText;
+    //[SerializeField] private float _waveDisplayTime = 5f;
 
     private Camera _camera;
     private CameraShake _cameraShaker;
 
-
     private GameManager _gameManager;
-
 
 
     // Start is called before the first frame update
@@ -65,8 +58,6 @@ public class UIManager : MonoBehaviour
                 Debug.LogError(message: "Camera Shaker is Null on UI Manager!");
             }
         }
-
-
     }
 
 
@@ -125,5 +116,18 @@ public class UIManager : MonoBehaviour
         {
             StartCoroutine(routine: _cameraShaker.CameraShaker(duration: 0.2f, magnitude: 0.3f));
         }
+    }
+
+    public void ShowWaveNumber(int wave)
+    {
+        StartCoroutine(ShowWaveNumberRoutine(wave));
+    }
+
+    private IEnumerator ShowWaveNumberRoutine(int wave)
+    {
+        _waveText.text = "Wave " + wave;
+        _waveText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(5f);
+        _waveText.gameObject.SetActive(false);
     }
 }
