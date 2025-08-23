@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     [Header("Damage Settings")]
     [SerializeField] private int _lives;
     [SerializeField] private GameObject _rightWingFire, _leftWingFire;
+    private bool _wasHit = false;
 
     [Header("Shield Settings")]
     [SerializeField] private GameObject _shieldVisualizer;
@@ -86,7 +87,9 @@ public class Player : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    { 
+        if (_wasHit)
+            _wasHit = false;
 
         CalculateMovement();
 
@@ -181,6 +184,9 @@ public class Player : MonoBehaviour
 
     public void Damage()
     {
+        if (_wasHit) return; 
+        _wasHit = true;
+
         if (_isShieldsActive == true )
         {
             _shieldHealth--;   
