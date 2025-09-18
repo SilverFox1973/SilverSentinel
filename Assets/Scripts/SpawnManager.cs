@@ -58,13 +58,17 @@ public class SpawnManager : MonoBehaviour
         int number = Random.Range(0, 10);
         int randomPowerup;
 
-        if (number < 9)
+        if (number < 8) // 0-7 -> 80%
         {
-            randomPowerup = Random.Range(0, 5);
+            randomPowerup = Random.Range(0, 5); // 0-4 (common)
         }
-        else
+        else if (number == 8) // -> 10%
         {
-            randomPowerup = 5;
+            randomPowerup = 5; //rare
+        }
+        else //number == 9 -> 10%
+        {
+            randomPowerup = 6; //rare
         }
         return randomPowerup;
     }
@@ -132,3 +136,4 @@ public class SpawnManager : MonoBehaviour
     }
 
 }
+

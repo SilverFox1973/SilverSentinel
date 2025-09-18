@@ -471,6 +471,7 @@ MonoBehaviour:
   - {fileID: 1942445749513666752, guid: 053dcc5e341234c459c85a4bbd459719, type: 3}
   - {fileID: 86437473756764405, guid: 73b5e07ff037c6a449947517c1739cb1, type: 3}
   - {fileID: 6282004326846098024, guid: 23c70820260850745b0352189c8b6e2e, type: 3}
+  - {fileID: 5533099742460658646, guid: 01caaab26d0be0c449726cb821ad77a9, type: 3}
   _wave: 0
   _waveMultiplier: 5
   _waveStartDelay: 5
@@ -1254,7 +1255,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &460172582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1268,7 +1269,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerSpeed: 4.5
-  _startingAmmoCount: 15
   _thrusterEnergyMultiply: 10
   _laserPrefab: {fileID: 3815116354344420502, guid: 245f57ae55f4f194c8a6d3a4ea5f9b36,
     type: 3}
@@ -1276,6 +1276,7 @@ MonoBehaviour:
     type: 3}
   _sprayShotPrefab: {fileID: 5291549970830831165, guid: 7078c43193280a247ac5df5a1ed0f5c9,
     type: 3}
+  _startingAmmoCount: 15
   _fireRate: 0.15
   _lives: 3
   _rightWingFire: {fileID: 655794280}
@@ -2860,6 +2861,74 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1001 &3577089371532791165
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1135101026205349566, guid: 56674ae2ed6cb1a4297042b68460b1b1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1135101026205349566, guid: 56674ae2ed6cb1a4297042b68460b1b1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1135101026205349566, guid: 56674ae2ed6cb1a4297042b68460b1b1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1135101026205349566, guid: 56674ae2ed6cb1a4297042b68460b1b1,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1135101026205349566, guid: 56674ae2ed6cb1a4297042b68460b1b1,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1135101026205349566, guid: 56674ae2ed6cb1a4297042b68460b1b1,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1135101026205349566, guid: 56674ae2ed6cb1a4297042b68460b1b1,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1135101026205349566, guid: 56674ae2ed6cb1a4297042b68460b1b1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1135101026205349566, guid: 56674ae2ed6cb1a4297042b68460b1b1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1135101026205349566, guid: 56674ae2ed6cb1a4297042b68460b1b1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8665624743145703156, guid: 56674ae2ed6cb1a4297042b68460b1b1,
+        type: 3}
+      propertyPath: m_Name
+      value: SpiralEnemy
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 56674ae2ed6cb1a4297042b68460b1b1, type: 3}
 --- !u!1001 &5177534699088599924
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2949,7 +3018,7 @@ PrefabInstance:
     - target: {fileID: 2195416731704081172, guid: dacc86015ae8a5446982c8a43570d9d7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.6
+      value: 3.97
       objectReference: {fileID: 0}
     - target: {fileID: 2195416731704081172, guid: dacc86015ae8a5446982c8a43570d9d7,
         type: 3}
@@ -3042,3 +3111,4 @@ SceneRoots:
   - {fileID: 460172584}
   - {fileID: 1451877751}
   - {fileID: 63660224}
+  - {fileID: 3577089371532791165}

@@ -60,6 +60,9 @@ public class Powerup : MonoBehaviour
                     case 5:
                         player.SprayShotActive();
                         break;
+                    case 6:
+                        player.WeaponJamActive();
+                        break;
                     default:
                         Debug.Log("Default Value");
                         break;  

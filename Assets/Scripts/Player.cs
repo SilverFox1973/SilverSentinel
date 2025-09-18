@@ -8,11 +8,8 @@ public class Player : MonoBehaviour
 {
     [Header("Speed Settings")]
     [SerializeField] private float _playerSpeed = 4.0f;
-    private bool _isTripleShotActive = false;
     private bool _isSpeedBoostActive = false;
     private bool _isThrusterEngaged = false;
-    private bool _isSprayShotActive = false;
-    [SerializeField] private int _startingAmmoCount = 15;
 
     private float _thrusterMaxEnergy = 100;
     private float _thrusterCurrentEnergy;
@@ -22,9 +19,19 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject _laserPrefab;
     [SerializeField] private GameObject _tripleShotPrefab;
     [SerializeField] private GameObject _sprayShotPrefab;
+    [SerializeField] private int _startingAmmoCount = 15;
+    private bool _isTripleShotActive = false;
+    private bool _isSprayShotActive = false;
+
+    private bool _isWeaponJamActive = false;
+    private float _jamTimeRemaining = 0f;
+    private Coroutine _weaponJamCoroutine;
 
     [SerializeField] private float _fireRate = 0.25f;
     private float _nextFire = -1f;
+    private bool _canFire = true;
+
+
 
     [Header("Damage Settings")]
     [SerializeField] private int _lives;
@@ -93,7 +100,7 @@ public class Player : MonoBehaviour
 
         CalculateMovement();
 
-        if (Input.GetKeyDown(KeyCode.Space) && Time.time > _nextFire)
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time > _nextFire  && _canFire)
         {
             if (_startingAmmoCount == 0)
             {
@@ -325,5 +332,30 @@ public class Player : MonoBehaviour
         _uiManager.UpdateScore(_score);
     }
 
+    public void WeaponJamActive()
+    {
+        // each pickup adds 5 seconds to jam
+        _jamTimeRemaining += 5.0f;
+
+        if (!_isWeaponJamActive)
+        { 
+            _isWeaponJamActive = true;
+            _canFire = false;
+            _weaponJamCoroutine = StartCoroutine(WeaponJamCoolDownRoutine());
+        }
+    }
+
+    IEnumerator WeaponJamCoolDownRoutine()
+    {
+        while (_jamTimeRemaining > 0f)
+        {
+            _jamTimeRemaining -= Time.deltaTime;
+            yield return null;
+        }
+        
+        _canFire = true;
+        _isWeaponJamActive = false;
+        _weaponJamCoroutine = null;
+    }
 
 }
