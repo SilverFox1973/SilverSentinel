@@ -5,44 +5,59 @@ using UnityEngine;
 public class SpiralEnemy : MonoBehaviour
 
 {
-    [SerializeField] private float _speed;
-
     [Header("Boundary")]
     [SerializeField] private float _topBounds;
     [SerializeField] private float _bottomBounds;
     [SerializeField] private float _leftBounds;
     [SerializeField] private float _rightBounds;
 
-    //[Header("Weapon Settings")]
-    //[SerializeField] private GameObject _laserPrefab;
-    //[SerializeField] private float _fireRate = 3.0f;
-    //[SerializeField] private float _canFire = -1f;
+    [Header("Weapon Settings")]
+    [SerializeField] private GameObject _laserPrefab;
+    [SerializeField] private float _fireRate = 3.0f;
+    [SerializeField] private float _canFire = -1f;
     private bool _isAlive = true;
 
     private Player _player;
     private SpawnManager _spawnManager;
 
-    //private Animator _enemyAnim;
-    //private AudioSource _audioSource;
+    private Animator _enemyAnim;
+    private AudioSource _audioSource;
+
+    [Header("Movement Settings")]
+    [SerializeField] private float _speed = 2.0f;
+    private float _shipTime = 0;
+    private Vector3 _travelLinePosition;
+
+    [SerializeField] private float _frequency = -0.75f;
+    [SerializeField] private float _amplitude;
+
+    private Vector3 _circleOffset = Vector3.zero;
 
     //Start is called before the first frame update
     void Start()
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
-        //_audioSource = GetComponent<AudioSource>();
+
+        _travelLinePosition = transform.position;
+
+        //Random radius 
+        _amplitude = Random.Range(1.0f, 3.0f);
+
+
+        _audioSource = GetComponent<AudioSource>();
 
         if (_player == null)
         {
             Debug.LogError("The Player in NULL.");
         }
 
-        //_enemyAnim = GetComponent<Animator>();
+        _enemyAnim = GetComponent<Animator>();
 
-        //if (_enemyAnim == null)
-        //{
-        //    Debug.LogError("The animator in NULL.");
-        //}
+        if (_enemyAnim == null)
+        {
+            Debug.LogError("The animator in NULL.");
+        }
 
         if (_spawnManager == null)
         {
@@ -58,18 +73,21 @@ public class SpiralEnemy : MonoBehaviour
 
         CalculateMovement();
 
-        //if (Time.time > _canFire)
-        //{
-        //    _fireRate = Random.Range(3f, 7f);
-        //    _canFire = Time.time + _fireRate;
-        //    GameObject enemyLaser = Instantiate(_laserPrefab, transform.position, Quaternion.identity);
-        //    Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();
+        if (Time.time > _canFire)
+        {
+            _fireRate = Random.Range(3f, 7f);
+            _canFire = Time.time + _fireRate;
+            GameObject enemyLaser = Instantiate(_laserPrefab, transform.position, Quaternion.identity);
+            Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();
 
-        //    for (int i = 0; i < lasers.Length; i++)
-        //    {
-        //        lasers[i].AssignEnemyLaser();
-        //    }
-        //}
+            for (int i = 0; i < lasers.Length; i++)
+            {
+                lasers[i].AssignEnemyLaser();
+            }
+        }
+
+        _shipTime += Time.deltaTime;
+
     }
     public void SpawnManager(SpawnManager manager)
     {
@@ -78,23 +96,34 @@ public class SpiralEnemy : MonoBehaviour
 
     void CalculateMovement()
     {
-        //transform.Translate(new Vector2(1f, -1f) * (_speed * Time.deltaTime));
+        // Move the center point downward
+        _travelLinePosition += Vector3.down * (_speed * Time.deltaTime);
 
-        //if (transform.position.y < _bottomBounds)
-        //{
-        //    float randomX = Random.Range(_leftBounds, _rightBounds);
-        //    transform.position = new Vector2(randomX, _topBounds);
-        //}
+        // Calculate the circular offset (circle arount the center) 
+        float angle = -2 * Mathf.PI * _shipTime * _frequency;
+        _circleOffset.x = Mathf.Cos(angle) * _amplitude;
+        _circleOffset.y = Mathf.Sin(angle) * _amplitude;
+       
+        // Spiral = downward travel + circular offset
+        transform.position = _travelLinePosition + _circleOffset;
 
+        //Reset if we move off-screen
+        if (transform.position.y <= _bottomBounds)
+        {
+            float randX = Random.Range(_leftBounds, _rightBounds);
+            transform.position = new Vector2(randX, _topBounds);
+            _travelLinePosition = transform.position;
+            _shipTime = 0; //reset spiral motion
+        }
 
     }
 
     public void EnemyDeath()
     {
         _isAlive = false; //prevents further firing
-        //_enemyAnim.SetTrigger("OnEnemyDeath");
+        _enemyAnim.SetTrigger("OnEnemyDeath");
         _speed = 0;
-        //_audioSource.Play();
+        _audioSource.Play();
         Destroy(GetComponent<Collider2D>());
 
         if (_spawnManager != null)

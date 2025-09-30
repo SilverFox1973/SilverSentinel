@@ -51,11 +51,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 4
   _topBounds: 8
-  _bottomBounds: -6.5
+  _bottomBounds: -8
   _leftBounds: -9.25
   _rightBounds: 9.25
   _laserPrefab: {fileID: 1596879071701245671, guid: 3371a925ef055bb48be7d8c2ade76a4c,
     type: 3}
+  _fireRate: 3
+  _canFire: -1
 --- !u!212 &3482857114540939799
 SpriteRenderer:
   m_ObjectHideFlags: 0

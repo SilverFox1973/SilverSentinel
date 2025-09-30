@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7522922483538084695}
   - component: {fileID: 3904206146371250337}
   - component: {fileID: 1906889373463873035}
+  - component: {fileID: 2746142116412703595}
   m_Layer: 0
   m_Name: SpiralEnemy
   m_TagString: Enemy
@@ -196,14 +197,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 522a169935e03724dbcbdd70cef53b02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0
-  _topBounds: 0
-  _bottomBounds: 0
-  _leftBounds: 0
-  _rightBounds: 0
-  _laserPrefab: {fileID: 0}
+  _topBounds: 8
+  _bottomBounds: -8
+  _leftBounds: -9.25
+  _rightBounds: 9.25
+  _laserPrefab: {fileID: 1596879071701245671, guid: 3371a925ef055bb48be7d8c2ade76a4c,
+    type: 3}
   _fireRate: 3
   _canFire: -1
+  _speed: 2
+  _frequency: -0.75
+  _waveLength: -2
 --- !u!61 &3904206146371250337
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -276,3 +280,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &2746142116412703595
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8665624743145703156}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 477e55662f9789141ab14930bb856ddb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

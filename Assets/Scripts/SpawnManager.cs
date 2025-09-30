@@ -6,7 +6,7 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private GameObject _enemyContainer;
-    [SerializeField] private GameObject _enemyPrefab;
+    [SerializeField] private GameObject[] _enemyPrefabs;
     [SerializeField] private GameObject _powerupContainer;
     [SerializeField] private GameObject[] _powerUps;
 
@@ -96,7 +96,12 @@ public class SpawnManager : MonoBehaviour
         while (!_stopSpawning  && _spawnedEnemyCount < _enemyWaveCount) 
         {
             Vector2 posToSpawn = new Vector2(Random.Range(-12f, 12f), 7);
-            GameObject newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
+
+            //pick a random enemy from array
+            int randomEnemy = Random.Range(0, _enemyPrefabs.Length);
+            GameObject enemyToSpawn = _enemyPrefabs[randomEnemy];
+
+            GameObject newEnemy = Instantiate(enemyToSpawn, posToSpawn, Quaternion.identity);
             newEnemy.transform.parent = _enemyContainer.transform;
 
             _spawnedEnemyCount++;
