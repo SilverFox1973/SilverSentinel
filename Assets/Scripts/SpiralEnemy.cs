@@ -12,9 +12,14 @@ public class SpiralEnemy : MonoBehaviour
     [SerializeField] private float _rightBounds;
 
     [Header("Weapon Settings")]
-    [SerializeField] private GameObject _laserPrefab;
-    [SerializeField] private float _fireRate = 3.0f;
-    [SerializeField] private float _canFire = -1f;
+    [SerializeField] private GameObject _beamPrefab; // Continous laser beam prefab
+    [SerializeField] private float _firingDuration = 5.0f; // Beam on time
+    [SerializeField] private float _beamCooldown = 5f;  // Beam off time
+
+    private GameObject _beamInstance;
+    private bool _isFiring = false;
+    private float _firingTimer = 0f;
+
     private bool _isAlive = true;
 
     private Player _player;
@@ -39,6 +44,7 @@ public class SpiralEnemy : MonoBehaviour
         _player = GameObject.Find("Player").GetComponent<Player>();
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
 
+        // Save the starting position as the baseline for spiral movement
         _travelLinePosition = transform.position;
 
         //Random radius 
@@ -73,28 +79,65 @@ public class SpiralEnemy : MonoBehaviour
 
         CalculateMovement();
 
-        if (Time.time > _canFire)
-        {
-            _fireRate = Random.Range(3f, 7f);
-            _canFire = Time.time + _fireRate;
-            GameObject enemyLaser = Instantiate(_laserPrefab, transform.position, Quaternion.identity);
-            Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();
-
-            for (int i = 0; i < lasers.Length; i++)
-            {
-                lasers[i].AssignEnemyLaser();
-            }
-        }
+        EnemyBeamFiring();
 
         _shipTime += Time.deltaTime;
 
     }
+
     public void SpawnManager(SpawnManager manager)
     {
         _spawnManager = manager;
     }
 
-    void CalculateMovement()
+   
+    private void EnemyBeamFiring()
+    { 
+        _firingTimer -= Time.deltaTime;
+
+        if (_isFiring)
+        {
+            // currently firing beam
+            if (_firingTimer <= 0f)
+            {
+                StopBeam();
+                _firingTimer = _beamCooldown; //switch to cooldown
+            }
+        }
+
+        else
+        {
+            //Currently cooling down
+            if (_firingTimer <= 0f)
+            {
+                StartBeam();
+                _firingTimer = _firingDuration; //switch to firing
+            }
+        }
+    }
+
+    private void StartBeam()
+    {
+        if (_beamInstance == null)
+        {
+            _beamInstance = Instantiate(_beamPrefab, transform.position, Quaternion.identity, transform);
+        }
+
+        _beamInstance.SetActive(true);
+        _isFiring = true;
+    }
+
+    private void StopBeam()
+    {
+        if (_beamInstance != null)
+        {
+            _beamInstance.SetActive(false);
+        }
+
+        _isFiring= false;
+    }
+
+    private void CalculateMovement()
     {
         // Move the center point downward
         _travelLinePosition += Vector3.down * (_speed * Time.deltaTime);
