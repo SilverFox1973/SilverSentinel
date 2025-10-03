@@ -12,13 +12,7 @@ public class SpiralEnemy : MonoBehaviour
     [SerializeField] private float _rightBounds;
 
     [Header("Weapon Settings")]
-    [SerializeField] private GameObject _beamPrefab; // Continous laser beam prefab
-    [SerializeField] private float _firingDuration = 5.0f; // Beam on time
-    [SerializeField] private float _beamCooldown = 5f;  // Beam off time
-
-    private GameObject _beamInstance;
-    private bool _isFiring = false;
-    private float _firingTimer = 0f;
+    
 
     private bool _isAlive = true;
 
@@ -79,8 +73,6 @@ public class SpiralEnemy : MonoBehaviour
 
         CalculateMovement();
 
-        EnemyBeamFiring();
-
         _shipTime += Time.deltaTime;
 
     }
@@ -90,52 +82,6 @@ public class SpiralEnemy : MonoBehaviour
         _spawnManager = manager;
     }
 
-   
-    private void EnemyBeamFiring()
-    { 
-        _firingTimer -= Time.deltaTime;
-
-        if (_isFiring)
-        {
-            // currently firing beam
-            if (_firingTimer <= 0f)
-            {
-                StopBeam();
-                _firingTimer = _beamCooldown; //switch to cooldown
-            }
-        }
-
-        else
-        {
-            //Currently cooling down
-            if (_firingTimer <= 0f)
-            {
-                StartBeam();
-                _firingTimer = _firingDuration; //switch to firing
-            }
-        }
-    }
-
-    private void StartBeam()
-    {
-        if (_beamInstance == null)
-        {
-            _beamInstance = Instantiate(_beamPrefab, transform.position, Quaternion.identity, transform);
-        }
-
-        _beamInstance.SetActive(true);
-        _isFiring = true;
-    }
-
-    private void StopBeam()
-    {
-        if (_beamInstance != null)
-        {
-            _beamInstance.SetActive(false);
-        }
-
-        _isFiring= false;
-    }
 
     private void CalculateMovement()
     {

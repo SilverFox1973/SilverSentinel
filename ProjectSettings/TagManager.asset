@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Projectile
   - TripleShotPowerUp
+  - EnemyBeam
   layers:
   - Default
   - TransparentFX
