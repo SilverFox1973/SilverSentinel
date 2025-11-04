@@ -201,13 +201,14 @@ MonoBehaviour:
   _bottomBounds: -8
   _leftBounds: -9.25
   _rightBounds: 9.25
-  _laserPrefab: {fileID: 1596879071701245671, guid: 3371a925ef055bb48be7d8c2ade76a4c,
+  _enemyBeamPrefab: {fileID: 8179794364631383909, guid: 80438f18687d21c419a14aef73b01652,
     type: 3}
-  _fireRate: 3
-  _canFire: -1
+  _firingDuration: 3
+  _beamCooldown: 2
+  _beamOffset: {x: 0, y: 0, z: 0}
   _speed: 2
   _frequency: -0.75
-  _waveLength: -2
+  _amplitude: 0
 --- !u!61 &3904206146371250337
 BoxCollider2D:
   m_ObjectHideFlags: 0

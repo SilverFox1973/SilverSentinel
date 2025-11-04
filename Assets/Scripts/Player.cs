@@ -129,13 +129,13 @@ public class Player : MonoBehaviour
             transform.position = new Vector3(transform.position.x, -3.9f, 0);
         }
 
-        if (transform.position.x > 11.3f)
+        if (transform.position.x > 11.4f)
         {
-            transform.position = new Vector3(-11.3f, transform.position.y, 0);
+            transform.position = new Vector3(-11.4f, transform.position.y, 0);
         }
-        else if (transform.position.x < -11.3f)
+        else if (transform.position.x < -11.4f)
         {
-            transform.position = new Vector3(11.3f, transform.position.y, 0);
+            transform.position = new Vector3(11.4f, transform.position.y, 0);
         }
 
         if (Input.GetKey(KeyCode.LeftShift) && _thrusterCurrentEnergy > 0)

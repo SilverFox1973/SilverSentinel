@@ -12,7 +12,15 @@ public class SpiralEnemy : MonoBehaviour
     [SerializeField] private float _rightBounds;
 
     [Header("Weapon Settings")]
-    
+    [SerializeField] private GameObject _enemyBeamPrefab;     // Continuous laser beam prefab
+    [SerializeField] private float _firingDuration = 5.0f;    // Beam activation time length
+    [SerializeField] private float _beamCooldown = 5.0f;      // Beam off time
+    [SerializeField] private Vector3 _beamOffset = new Vector3(0, -1f, 0);   // Position offset for beam, can adjust in Inspector
+
+    private GameObject _enemyBeamInstance;  
+    private bool _isFiring = false;
+    private float _beamFiringTimer = 0f;
+    private float _beamCooldownTimer = 0f;
 
     private bool _isAlive = true;
 
@@ -45,7 +53,7 @@ public class SpiralEnemy : MonoBehaviour
         _amplitude = Random.Range(1.0f, 3.0f);
 
 
-        _audioSource = GetComponent<AudioSource>();
+        //_audioSource = GetComponent<AudioSource>();
 
         if (_player == null)
         {
@@ -66,12 +74,14 @@ public class SpiralEnemy : MonoBehaviour
     }
 
     // Update is called once per frame
+
     void Update()
     {
-        if (!_isAlive) //Ask if the Enemy is Alive.  If not, do not proceed with the code
+        if (!_isAlive) 
             return;
 
         CalculateMovement();
+        EnemyBeamFiring();
 
         _shipTime += Time.deltaTime;
 
@@ -82,6 +92,57 @@ public class SpiralEnemy : MonoBehaviour
         _spawnManager = manager;
     }
 
+    private void EnemyBeamFiring()
+    {
+        if (_isFiring)
+        {
+            // currently firing beam
+            if (_beamFiringTimer <= 0f)
+            {
+                StopBeam();
+                _beamFiringTimer = _firingDuration; // switch to cooldown
+                _beamCooldownTimer = _beamCooldown;
+            }
+        }
+        else
+        {
+            // currently cooling down
+            if (_beamCooldownTimer <= 0f)
+            {
+                StartBeam();
+                _beamFiringTimer = _firingDuration; // switch to firing
+            }
+        }
+
+        if (_isFiring)
+            _beamFiringTimer -= Time.deltaTime;
+        else 
+            _beamCooldownTimer -= Time.deltaTime;
+    }
+
+    private void StartBeam()
+    {
+        if (_enemyBeamInstance == null)
+        {
+            _enemyBeamInstance = Instantiate(_enemyBeamPrefab, transform.position + 
+                _beamOffset, Quaternion.identity, transform);
+        }
+        
+        _enemyBeamInstance.SetActive(true);
+        //_enemyBeamInstance.transform.localPosition = _beamOffset; // ensure correct offset
+        _isFiring = true;
+    }
+
+    private void StopBeam()
+    {
+        if (_enemyBeamInstance != null)
+        {
+            _enemyBeamInstance.SetActive(false);
+        }
+
+        _isFiring= false;
+    }
+    
 
     private void CalculateMovement()
     {
@@ -112,7 +173,7 @@ public class SpiralEnemy : MonoBehaviour
         _isAlive = false; //prevents further firing
         _enemyAnim.SetTrigger("OnEnemyDeath");
         _speed = 0;
-        _audioSource.Play();
+        //_audioSource.Play();
         Destroy(GetComponent<Collider2D>());
 
         if (_spawnManager != null)
@@ -120,6 +181,10 @@ public class SpiralEnemy : MonoBehaviour
             _spawnManager.OnEnemyDestroyed();
         }
 
+        if (transform.childCount > 0)
+        {
+            Destroy(transform.GetChild(0).gameObject);
+        }
         Destroy(this.gameObject, 2.5f); //Let's animation/sound play out
     }
 
