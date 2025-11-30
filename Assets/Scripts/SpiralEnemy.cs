@@ -13,7 +13,7 @@ public class SpiralEnemy : MonoBehaviour
 
     [Header("Weapon Settings")]
     [SerializeField] private GameObject _enemyBeamPrefab;     // Continuous laser beam prefab
-    [SerializeField] private float _firingDuration = 5.0f;    // Beam activation time length
+    [SerializeField] private float _firingDuration = 2.0f;    // Beam activation time length
     [SerializeField] private float _beamCooldown = 5.0f;      // Beam off time
     [SerializeField] private Vector3 _beamOffset = new Vector3(0, -1f, 0);   // Position offset for beam, can adjust in Inspector
 
@@ -126,10 +126,11 @@ public class SpiralEnemy : MonoBehaviour
         {
             _enemyBeamInstance = Instantiate(_enemyBeamPrefab, transform.position + 
                 _beamOffset, Quaternion.identity, transform);
+            _enemyBeamInstance.GetComponent<EnemyBeam>().SetOwner(this);
         }
         
         _enemyBeamInstance.SetActive(true);
-        //_enemyBeamInstance.transform.localPosition = _beamOffset; // ensure correct offset
+
         _isFiring = true;
     }
 
@@ -168,6 +169,14 @@ public class SpiralEnemy : MonoBehaviour
 
     }
 
+    public void BeamHitPlayer(Player player)
+    {
+        if (!_isAlive)
+            return;
+
+        player.Damage();
+    }
+
     public void EnemyDeath()
     {
         _isAlive = false; //prevents further firing
@@ -181,24 +190,33 @@ public class SpiralEnemy : MonoBehaviour
             _spawnManager.OnEnemyDestroyed();
         }
 
-        if (transform.childCount > 0)
+
+        if (_enemyBeamInstance != null)
         {
-            Destroy(transform.GetChild(0).gameObject);
+            SpriteRenderer sr = _enemyBeamInstance.GetComponentInChildren<SpriteRenderer>();
+            if (sr != null) sr.enabled = false;
+
+            Collider2D col = _enemyBeamInstance.GetComponentInChildren<Collider2D>();
+            if (col != null) col.enabled = false;
+
+            Destroy(_enemyBeamInstance, 2.5f);
         }
-        Destroy(this.gameObject, 2.5f); //Let's animation/sound play out
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
         {
+            Debug.Log($"[DEBUG] SpiralEnemy child (BEAM) hit PLAYER. Collider = {other.name}");
+
             Player player = other.transform.GetComponent<Player>();
 
             if (player != null)
             {
-                player.Damage();
+                BeamHitPlayer(player);
             }
-            EnemyDeath();
+            return;
         }
 
         if (other.tag == "Laser")
@@ -206,10 +224,11 @@ public class SpiralEnemy : MonoBehaviour
             Destroy(other.gameObject);
             if (_player != null)
             {
-                _player.AddScore(10);
+                _player.AddScore(15);
             }
             EnemyDeath();
         }
     }
+
 }
 

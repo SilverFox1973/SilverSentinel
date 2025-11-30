@@ -203,8 +203,8 @@ MonoBehaviour:
   _rightBounds: 9.25
   _enemyBeamPrefab: {fileID: 8179794364631383909, guid: 80438f18687d21c419a14aef73b01652,
     type: 3}
-  _firingDuration: 3
-  _beamCooldown: 2
+  _firingDuration: 2
+  _beamCooldown: 5
   _beamOffset: {x: 0, y: 0, z: 0}
   _speed: 2
   _frequency: -0.75
