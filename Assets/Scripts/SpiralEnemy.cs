@@ -12,10 +12,10 @@ public class SpiralEnemy : MonoBehaviour
     [SerializeField] private float _rightBounds;
 
     [Header("Weapon Settings")]
-    [SerializeField] private GameObject _enemyBeamPrefab;     // Continuous laser beam prefab
-    [SerializeField] private float _firingDuration = 2.0f;    // Beam activation time length
-    [SerializeField] private float _beamCooldown = 5.0f;      // Beam off time
-    [SerializeField] private Vector3 _beamOffset = new Vector3(0, -1f, 0);   // Position offset for beam, can adjust in Inspector
+    [SerializeField] private GameObject _enemyBeamPrefab;    // Continuous laser beam prefab 
+    [SerializeField] private float _firingDuration = 2.0f;   // Beam activation time length
+    [SerializeField] private float _beamCooldown = 5.0f;     // Beam off time 
+    [SerializeField] private Vector3 _beamOffset = new Vector3(0, -1f, 0);  // Position offset for beam, can adjust in Inspector
 
     private GameObject _enemyBeamInstance;  
     private bool _isFiring = false;
@@ -126,7 +126,6 @@ public class SpiralEnemy : MonoBehaviour
         {
             _enemyBeamInstance = Instantiate(_enemyBeamPrefab, transform.position + 
                 _beamOffset, Quaternion.identity, transform);
-            _enemyBeamInstance.GetComponent<EnemyBeam>().SetOwner(this);
         }
         
         _enemyBeamInstance.SetActive(true);
@@ -208,8 +207,6 @@ public class SpiralEnemy : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Debug.Log($"[DEBUG] SpiralEnemy child (BEAM) hit PLAYER. Collider = {other.name}");
-
             Player player = other.transform.GetComponent<Player>();
 
             if (player != null)

@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 51981165621174111}
-  - component: {fileID: 9141678687335852103}
   m_Layer: 0
   m_Name: EnemyBeam
   m_TagString: EnemyBeam
@@ -33,18 +32,6 @@ Transform:
   - {fileID: 7944927218231196596}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9141678687335852103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8179794364631383909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 377cdeffe31cd4743ae17d0e2b5bed31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8804335632524276689
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,6 +44,7 @@ GameObject:
   - component: {fileID: 7444250881896369898}
   - component: {fileID: 6800694371762734250}
   - component: {fileID: 2735225795296403646}
+  - component: {fileID: 502344313816220268}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -193,3 +181,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &502344313816220268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8804335632524276689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 377cdeffe31cd4743ae17d0e2b5bed31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
