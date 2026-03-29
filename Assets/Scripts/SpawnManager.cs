@@ -11,31 +11,40 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private GameObject[] _powerUps;
 
     [Header("Enemy Wave Settings")]
-    
+
     private int _enemyWaveCount;
     private int _spawnedEnemyCount = 0;
     private int _aliveEnemyCount = 0;
-    
+
 
     [SerializeField] private int _wave = 0;
     [SerializeField] private int _waveMultiplier = 5;
-    [SerializeField] private float _waveStartDelay = 5f;
+    [SerializeField] private float _waveSpawnInterval = 5f;
     [SerializeField] private float _afterWaveDelay = 10f;
-    
-    
+    [SerializeField] private float _waveUITextDuration = 5f;
+
+
     [Space(10)]
     private bool _stopSpawning = false;
+    private bool _hasStartedSpawning = false;
 
     private UIManager _uiManager;
 
     private void Start()
     {
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
-        StartSpawning();
+        //StartSpawning();
     }
 
     public void StartSpawning()
-    {
+    { 
+        if (_hasStartedSpawning)
+        {
+            Debug.Log("SpawnManager: StartSpawning() was already called.");
+            return;
+        }
+    
+        _hasStartedSpawning = true;
         _wave = 0;
         WaveAdvance();
         StartCoroutine(SpawnPowerupRoutine());
@@ -47,7 +56,10 @@ public class SpawnManager : MonoBehaviour
         _enemyWaveCount = _wave * _waveMultiplier;
         _spawnedEnemyCount = 0; //reset for new wave
 
-        FindObjectOfType<UIManager>().ShowWaveNumber(_wave);
+        if (_uiManager  != null)
+        {
+            _uiManager.ShowWaveNumber(_wave);
+        }
 
         //Debug.Log($"Wave {_wave} starting in 10 seconds with {_enemyWaveCount} enemies...");
         StartCoroutine(StartWaveAfterDelay(_afterWaveDelay));
@@ -76,15 +88,10 @@ public class SpawnManager : MonoBehaviour
     
     private IEnumerator StartWaveAfterDelay(float delay)
     {
-        if (_uiManager != null)
-        {
-            _uiManager.ShowWaveNumber(_wave); //Show "Wave X" UI
-        }
-
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(_waveUITextDuration);
 
         //Wait the remaining delay time (delay - 5f)
-        float remainingDelay = Mathf.Max(0, delay - 5f);
+        float remainingDelay = Mathf.Max(0, delay - _waveUITextDuration);
         yield return new WaitForSeconds(remainingDelay);
 
         _aliveEnemyCount = 0; //Reset here before spawning
@@ -107,7 +114,7 @@ public class SpawnManager : MonoBehaviour
             _spawnedEnemyCount++;
             _aliveEnemyCount++;
             
-            yield return new WaitForSeconds(_waveStartDelay); //wait between spawns
+            yield return new WaitForSeconds(_waveSpawnInterval); //wait between spawns
         }  
     }
 
@@ -117,7 +124,7 @@ public class SpawnManager : MonoBehaviour
 
         while (_stopSpawning == false)
         {
-            Vector2 posToSpawn = new Vector3(Random.Range(-9f, 9f), 7);
+            Vector2 posToSpawn = new Vector2(Random.Range(-9f, 9f), 7);
             GameObject newPowerup = Instantiate(_powerUps[GetPowerup()], posToSpawn, Quaternion.identity);
             newPowerup.transform.parent = _powerupContainer.transform;
             yield return new WaitForSeconds(Random.Range(3, 11));
