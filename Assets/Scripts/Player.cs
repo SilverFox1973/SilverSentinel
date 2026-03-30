@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject _tripleShotPrefab;
     [SerializeField] private GameObject _sprayShotPrefab;
     [SerializeField] private int _startingAmmoCount = 15;
+    [SerializeField] private float _powerupTimer = 5.0f;
     private bool _isTripleShotActive = false;
     private bool _isSprayShotActive = false;
 
@@ -269,7 +270,7 @@ public class Player : MonoBehaviour
 
     IEnumerator TripleShotPowerDownRoutine()
     {
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(_powerupTimer);
         _isTripleShotActive = false;
     }
 
@@ -281,7 +282,7 @@ public class Player : MonoBehaviour
 
     IEnumerator SprayShotPowerDownRoutine()
     {
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(_powerupTimer);
         _isSprayShotActive = false;
     }
 
@@ -293,7 +294,7 @@ public class Player : MonoBehaviour
 
     IEnumerator SpeedBoostPowerDownRoutine()
     {
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(_powerupTimer);
         _isSpeedBoostActive = false;
     }
 
@@ -335,7 +336,7 @@ public class Player : MonoBehaviour
     public void WeaponJamActive()
     {
         // each pickup adds 5 seconds to jam
-        _jamTimeRemaining += 5.0f;
+        _jamTimeRemaining += _powerupTimer;
 
         if (!_isWeaponJamActive)
         { 
