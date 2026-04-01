@@ -464,6 +464,7 @@ MonoBehaviour:
   _enemyPrefabs:
   - {fileID: 8020425337564363394, guid: 2a13732f0de85664180ea2e5fa64f936, type: 3}
   - {fileID: 8665624743145703156, guid: 56674ae2ed6cb1a4297042b68460b1b1, type: 3}
+  _enemySpawnChances: 460000001e000000
   _powerupContainer: {fileID: 227422614}
   _powerUps:
   - {fileID: 2596807662610508227, guid: 9193ad77a441739409d223a129480fed, type: 3}
@@ -473,10 +474,13 @@ MonoBehaviour:
   - {fileID: 86437473756764405, guid: 73b5e07ff037c6a449947517c1739cb1, type: 3}
   - {fileID: 6282004326846098024, guid: 23c70820260850745b0352189c8b6e2e, type: 3}
   - {fileID: 5533099742460658646, guid: 01caaab26d0be0c449726cb821ad77a9, type: 3}
+  _powerupChances: 1e000000140000000f000000320000000f0000001e00000014000000
   _wave: 0
   _waveMultiplier: 5
-  _waveStartDelay: 5
+  _waveSpawnInterval: 5
   _afterWaveDelay: 10
+  _waveUITextDuration: 5
+  _powerupSpawnDelay: 5
 --- !u!1 &227422614
 GameObject:
   m_ObjectHideFlags: 0
@@ -1279,6 +1283,7 @@ MonoBehaviour:
   _sprayShotPrefab: {fileID: 5291549970830831165, guid: 7078c43193280a247ac5df5a1ed0f5c9,
     type: 3}
   _startingAmmoCount: 15
+  _powerupTimer: 5
   _fireRate: 0.15
   _lives: 3
   _rightWingFire: {fileID: 655794280}

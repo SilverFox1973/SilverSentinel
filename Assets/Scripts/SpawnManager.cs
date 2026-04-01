@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEditorInternal;
 using UnityEngine;
 
@@ -7,22 +8,27 @@ public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private GameObject _enemyContainer;
     [SerializeField] private GameObject[] _enemyPrefabs;
+    [SerializeField] private int[] _enemySpawnChances;  //Enemy type spawn weight
+    private int _enemySpawnChanceTotal;  //Enemy type spawn weight total
+    [Space(10)]
     [SerializeField] private GameObject _powerupContainer;
     [SerializeField] private GameObject[] _powerUps;
+    [SerializeField] private int[] _powerupChances;  //powerup weight
+    private int _powerupChanceTotal;  //powerup weight total
 
-    [Header("Enemy Wave Settings")]
+    [Header("Spawn Settings")]
 
     private int _enemyWaveCount;
     private int _spawnedEnemyCount = 0;
     private int _aliveEnemyCount = 0;
 
-
+    [Header("Wave Settings")]
     [SerializeField] private int _wave = 0;
     [SerializeField] private int _waveMultiplier = 5;
     [SerializeField] private float _waveSpawnInterval = 5f;
     [SerializeField] private float _afterWaveDelay = 10f;
     [SerializeField] private float _waveUITextDuration = 5f;
-
+    [SerializeField] private float _powerupSpawnDelay = 5.0f;
 
     [Space(10)]
     private bool _stopSpawning = false;
@@ -120,14 +126,14 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator SpawnPowerupRoutine()
     {
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(_powerupSpawnDelay);
 
         while (_stopSpawning == false)
         {
             Vector2 posToSpawn = new Vector2(Random.Range(-9f, 9f), 7);
             GameObject newPowerup = Instantiate(_powerUps[GetPowerup()], posToSpawn, Quaternion.identity);
             newPowerup.transform.parent = _powerupContainer.transform;
-            yield return new WaitForSeconds(Random.Range(3, 11));
+            yield return new WaitForSeconds(Random.Range(3.0f, 11.0f));
         }
     }
 
