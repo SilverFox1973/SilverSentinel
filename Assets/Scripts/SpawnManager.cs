@@ -40,6 +40,16 @@ public class SpawnManager : MonoBehaviour
     {
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         //StartSpawning();
+
+        foreach (int powerupChance in _powerupChances) //Add up all Powerup Chances
+        {
+            _powerupChanceTotal += powerupChance;
+        }
+
+        foreach (int enemySpawnChance in _enemySpawnChances) //Add up all Enemy Spawn Chances
+        {
+            _enemySpawnChanceTotal += enemySpawnChance;
+        }
     }
 
     public void StartSpawning()
