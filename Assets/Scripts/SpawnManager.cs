@@ -9,12 +9,12 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private GameObject _enemyContainer;
     [SerializeField] private GameObject[] _enemyPrefabs;
     [SerializeField] private int[] _enemySpawnChances;  //Enemy type spawn weight
-    private int _enemySpawnChanceTotal;  //Enemy type spawn weight total
+    private int _enemySpawnChanceTotal = 0;  //Enemy type spawn weight total
     [Space(10)]
     [SerializeField] private GameObject _powerupContainer;
     [SerializeField] private GameObject[] _powerUps;
     [SerializeField] private int[] _powerupChances;  //powerup weight
-    private int _powerupChanceTotal;  //powerup weight total
+    private int _powerupChanceTotal = 0;  //powerup weight total
 
     [Header("Spawn Settings")]
 
